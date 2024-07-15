@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artwork>
+    <output type="cover" width="640" height="480">
+
+        <layer resource="system-logos/dark-white/{{ 'logo'|trans({}, 'logo', locale) }}"
+               width="200" align="right" valign="middle" x="-50" y="0">
+            <opacity value="60"/>
+        </layer>
+
+    </output>
+</artwork>

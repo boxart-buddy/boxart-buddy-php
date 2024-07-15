@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artwork>
+    <output type="cover" width="640" height="480">
+
+        {% if helper is not null %}
+        <layer resource="screenshot" height="{{ helper.cover(640,480)['h'] }}" width="{{ helper.cover(640,480)['w'] }}"
+               align="center"
+               valign="middle">
+            <opacity value="30"/>
+        </layer>
+        {% else %}
+        <layer resource="screenshot" height="480" align="center" valign="middle">
+            <opacity value="40"/>
+        </layer>
+        {% endif %}
+
+    </output>
+</artwork>

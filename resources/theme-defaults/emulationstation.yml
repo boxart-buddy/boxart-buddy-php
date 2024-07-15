@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: 393A3B }
+  - { strategy: translation, color: 393A3B }
+  - { strategy: background, background_default: theme-background/emulationstation.png }
+  - { strategy: vertical_scrollbar, track_color: 393A3B, thumb_color: '000000' }
+  - { strategy: text, color: 393A3B, color_alt: FFFFFF, background_color: '000000' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: 393A3B }

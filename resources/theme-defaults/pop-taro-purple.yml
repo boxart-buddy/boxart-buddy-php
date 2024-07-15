@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: '000000' }
+  - { strategy: translation, color: '000000' }
+  - { strategy: background, background_default: theme-background/pop-taro-purple.png }
+  - { strategy: vertical_scrollbar, track_color: '000000', thumb_color: DC73FF }
+  - { strategy: text, color: '000000', color_alt: FFFFFF, background_color: DC73FF }
+  - { strategy: vertical_dot_scrollbar, dotcolor: '000000' }

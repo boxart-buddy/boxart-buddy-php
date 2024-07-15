@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: fff176 }
+  - { strategy: translation, color: fff176 }
+  - { strategy: background, background_default: theme-background/cheers.png }
+  - { strategy: vertical_scrollbar, track_color: fff176, thumb_color: ff6400 }
+  - { strategy: text, color: fff176, color_alt: a7a4e0, background_color: ff6400 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: fff176 }

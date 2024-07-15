@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: ECEFEF }
+  - { strategy: translation, color: ECEFEF }
+  - { strategy: background, background_default: theme-background/mubios.png }
+  - { strategy: vertical_scrollbar, track_color: ECEFEF, thumb_color: AD1018 }
+  - { strategy: text, color: ECEFEF, color_alt: F7EF63, background_color: AD1018 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: ECEFEF }

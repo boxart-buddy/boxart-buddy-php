@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: ddb54c }
+  - { strategy: translation, color: ddb54c }
+  - { strategy: background, background_default: theme-background/beanz.png }
+  - { strategy: vertical_scrollbar, track_color: ddb54c, thumb_color: 65C485 }
+  - { strategy: text, color: ddb54c, color_alt: FFFFFF, background_color: 65C485 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: ddb54c }

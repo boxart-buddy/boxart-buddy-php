@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: 321a04, font_family: pixel, font_variant: DiaryOfAn8BitMage }
+  - { strategy: translation, color: 321a04, font_family: pixel, font_variant: DiaryOfAn8BitMage }
+  - { strategy: background, background_default: theme-background/gbos-color-amber.png }
+  - { strategy: vertical_scrollbar, track_color: 321a04, thumb_color: 975b1e }
+  - { strategy: text, color: 321a04, color_alt: 321a04, background_color: 975b1e, font_family: pixel, font_variant: DiaryOfAn8BitMage }
+  - { strategy: vertical_dot_scrollbar, dotcolor: 321a04 }

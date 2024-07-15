@@ -1,0 +1,75 @@
+text-only:
+  metadata:
+    type: standalone
+    interface: full+front
+  description: 'Simple text based navigation like minUI'
+  package_name: minimal-text-only
+  artwork:
+    package: common
+    file: null-screenshot.xml
+  folder:
+    package: common
+    file: null-screenshot.xml
+  post_process:
+    - strategy: text
+      position: left
+      size: m
+      shadow: true
+      font_family: vag_rounded
+      font_variant: bold
+    - strategy: offset_with_siblings
+      offset_y: 60
+      sibling-count: 3
+      loop: true
+    - strategy: text
+      position: left
+      text_bg_opacity: 100
+      use_color_alt: true
+      color_invert: true
+      size: m
+      font_family: vag_rounded
+      font_variant: bold
+    - strategy: background
+      use_background_default: true
+      background_default: 'theme-background/muos-classic.png'
+
+text-screenshot:
+  metadata:
+    type: standalone
+    interface: full+front
+  description: 'Simple text based navigation with background image'
+  package_name: minimal-text-screenshot
+  artwork:
+    package: common
+    file: null-screenshot.xml
+  folder:
+    package: common
+    file: null-screenshot.xml
+  post_process:
+    - strategy: text
+      position: left
+      size: m
+      shadow: true
+      font_family: vag_rounded
+      font_variant: bold
+    - strategy: offset_with_siblings
+      offset_y: 60
+      sibling-count: 3
+      loop: true
+    - strategy: text
+      position: left
+      text_bg_opacity: 100
+      use_color_alt: true
+      color_invert: true
+      size: m
+      font_family: vag_rounded
+      font_variant: bold
+    - strategy: artwork_generation
+      artwork_package: minimal
+      artwork_file: 'screenshot.xml'
+      folder_package: minimal
+      folder_file: 'system-logo.xml'
+      layer: bottom
+    - strategy: background
+      use_background_default: true
+      background_default: 'theme-background/muos-classic.png'

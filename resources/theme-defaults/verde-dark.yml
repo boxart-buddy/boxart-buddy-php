@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: FFFFFF }
+  - { strategy: translation, color: FFFFFF }
+  - { strategy: background, background_default: theme-background/verde-dark.png }
+  - { strategy: vertical_scrollbar, track_color: FFFFFF, thumb_color: 383a3b }
+  - { strategy: text, color: FFFFFF, color_alt: 22b07d, background_color: 383a3b }
+  - { strategy: vertical_dot_scrollbar, dotcolor: FFFFFF }

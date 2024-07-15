@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artwork>
+    <output type="cover" width="640" height="480">
+
+        {% if platform in ['mame'] %}
+        <layer resource="screenshot" mpixels="0.7" align="center" valign="middle"
+               x="{{160+((rom|trans({}, 'screenshot-offset-x', locale)|default(0)) * 1)|round }}">
+        </layer>
+        {% elseif platform in ['nds'] %}
+        <layer resource="screenshot" width="380" align="center" valign="middle"
+               x="160">
+        </layer>
+        {% else %}
+        <layer resource="screenshot" height="480" align="center" valign="middle"
+               x="{{160+((rom|trans({}, 'screenshot-offset-x', locale)|default(0)) * 1)|round }}">
+        </layer>
+        {% endif %}
+
+        <mask file="mask/right-half.png" width="640" height="480" x="0"/>
+
+    </output>
+</artwork>

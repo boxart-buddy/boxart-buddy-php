@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: F7F9F9 }
+  - { strategy: translation, color: F7F9F9 }
+  - { strategy: background, background_default: theme-background/lyxodius-dark-black.png }
+  - { strategy: vertical_scrollbar, track_color: F7F9F9, thumb_color: F7E318 }
+  - { strategy: text, color: F7F9F9, color_alt: FECE15, background_color: F7E318 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: F7F9F9 }

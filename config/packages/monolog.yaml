@@ -1,0 +1,69 @@
+monolog:
+  channels:
+    - deprecation # Deprecations are logged in the dedicated "deprecation" channel when it exists
+    - skyscraper
+    - postprocessing
+    - preview
+
+when@dev:
+  monolog:
+    handlers:
+      main:
+        type: rotating_file
+        path: "%kernel.logs_dir%/%kernel.environment%.log"
+        level: debug
+        channels: [ "!event", "!skyscraper", "!preview", "!postprocessing" ]
+        max_files: 7
+      skyscraper:
+        type: rotating_file
+        path: "%kernel.logs_dir%/skyscraper.log"
+        level: debug
+        channels: [ "skyscraper" ]
+        max_files: 7
+        formatter: 'App\Log\MonologLineFormatter'
+      preview:
+        type: rotating_file
+        path: "%kernel.logs_dir%/preview.log"
+        level: debug
+        channels: [ "preview" ]
+        max_files: 7
+        formatter: 'App\Log\MonologLineFormatter'
+      postprocessing:
+        type: rotating_file
+        path: "%kernel.logs_dir%/postprocessing.log"
+        level: debug
+        channels: [ "postprocessing" ]
+        max_files: 7
+        formatter: 'App\Log\MonologLineFormatter'
+      console:
+        type: console
+        process_psr_3_messages: false
+        channels: [ "!event", "!doctrine", "!console" ]
+
+when@test:
+  monolog:
+    handlers:
+      main:
+        type: fingers_crossed
+        action_level: error
+        handler: nested
+        excluded_http_codes: [ 404, 405 ]
+        channels: [ "!event" ]
+      nested:
+        type: stream
+        path: "%kernel.logs_dir%/%kernel.environment%.log"
+        level: debug
+
+when@prod:
+  monolog:
+    handlers:
+      main:
+        type: rotating_file
+        path: "%kernel.logs_dir%/%kernel.environment%.log"
+        level: debug
+        channels: [ "!event" ]
+        max_files: 7
+      console:
+        type: console
+        process_psr_3_messages: false
+        channels: [ "!event", "!doctrine", "!console" ]

@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: 654fb7, font_family: bariol, font_variant: bold }
+  - { strategy: translation, color: 654fb7, font_family: bariol, font_variant: bold }
+  - { strategy: background, background_default: theme-background/gamepal-snesnight.png }
+  - { strategy: vertical_scrollbar, track_color: 654fb7, thumb_color: 0c0016 }
+  - { strategy: text, color: 654fb7, color_alt: dddddd, background_color: 0c0016, font_family: bariol, font_variant: bold }
+  - { strategy: vertical_dot_scrollbar, dotcolor: 654fb7 }

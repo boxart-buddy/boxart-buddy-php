@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: FFFFFF }
+  - { strategy: translation, color: FFFFFF }
+  - { strategy: background, background_default: theme-background/thewitcher3.png }
+  - { strategy: vertical_scrollbar, track_color: FFFFFF, thumb_color: FFFFFF }
+  - { strategy: text, color: FFFFFF, color_alt: '000000', background_color: FFFFFF }
+  - { strategy: vertical_dot_scrollbar, dotcolor: FFFFFF }

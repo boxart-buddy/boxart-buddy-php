@@ -1,0 +1,6 @@
+post_process:
+  - { strategy: counter, color: '515260' }
+  - { strategy: translation, color: '515260' }
+  - { strategy: vertical_scrollbar, track_color: '515260', thumb_color: CCC5C7 }
+  - { strategy: text, color: '515260', color_alt: AD1035, background_color: CCC5C7 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: '515260' }

@@ -1,0 +1,66 @@
+artbook-next:
+  metadata:
+    type: sibling
+    interface: 'full+front'
+  description: "greycale siblings, white system logos w/ black outline"
+  package_name: 'artbook-next'
+  artwork:
+    file: 'masked-screenshot.xml'
+  folder:
+    file: 'masked-screenshot.xml'
+  portmaster:
+    file: 'masked-screenshot.xml'
+  post_process:
+    - strategy: offset_with_siblings
+      offset_x: 150
+      sibling-count: 3
+      loop: true
+      effect: greyscale
+    - strategy: artwork_generation
+      artwork_file: 'wheel-white-stroke.xml'
+      folder_file: 'system-logo.xml'
+
+artbook-next-alt:
+  metadata:
+    type: sibling
+    interface: 'full+front'
+  description: "dimmed siblings, white system logos, game logos w/ black outline"
+  package_name: 'artbook-next-alt'
+  artwork:
+    file: 'masked-screenshot-frame.xml'
+  folder:
+    file: 'masked-screenshot-frame.xml'
+  portmaster:
+    file: 'masked-screenshot-frame.xml'
+  post_process:
+    - strategy: offset_with_siblings
+      offset_x: 150
+      sibling-count: 3
+      loop: true
+    - strategy: background
+      overlay: overlay.png
+    - strategy: artwork_generation
+      artwork_file: 'wheel-white-stroke.xml'
+      folder_file: 'system-logo.xml'
+
+artbook-next-vertical:
+  metadata:
+    type: sibling
+    interface: 'full+front'
+  description: "vertically stacked, white system logos w/ black outline"
+  package_name: 'artbook-next-vertical'
+  artwork:
+    file: 'masked-screenshot-vertical.xml'
+  folder:
+    file: 'masked-screenshot-vertical.xml'
+  portmaster:
+    file: 'masked-screenshot-vertical.xml'
+  post_process:
+    - strategy: offset_with_siblings
+      offset_y: 144
+      sibling-count: 2
+      loop: true
+      effect: greyscale
+    - strategy: artwork_generation
+      artwork_file: 'wheel-white-stroke.xml'
+      folder_file: 'system-logo.xml'

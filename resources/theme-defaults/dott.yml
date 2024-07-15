@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: FCC407 }
+  - { strategy: translation, color: FCC407 }
+  - { strategy: background, background_default: theme-background/dott.png }
+  - { strategy: vertical_scrollbar, track_color: FCC407, thumb_color: 46004C }
+  - { strategy: text, color: FCC407, color_alt: 00CF39, background_color: 46004C }
+  - { strategy: vertical_dot_scrollbar, dotcolor: FCC407 }

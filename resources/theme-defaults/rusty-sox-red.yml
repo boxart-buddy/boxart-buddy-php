@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: FFFFFF }
+  - { strategy: translation, color: FFFFFF }
+  - { strategy: background, background_default: theme-background/rusty-sox-red.png }
+  - { strategy: vertical_scrollbar, track_color: FFFFFF, thumb_color: FF0F1B }
+  - { strategy: text, color: FFFFFF, color_alt: FF0F1B, background_color: FF0F1B }
+  - { strategy: vertical_dot_scrollbar, dotcolor: FFFFFF }

@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: BF1C1C }
+  - { strategy: translation, color: BF1C1C }
+  - { strategy: background, background_default: theme-background/sotn.png }
+  - { strategy: vertical_scrollbar, track_color: BF1C1C, thumb_color: F7E318 }
+  - { strategy: text, color: BF1C1C, color_alt: FE5252, background_color: F7E318 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: BF1C1C }

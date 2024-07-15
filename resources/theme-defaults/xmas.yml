@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: E0AC70 }
+  - { strategy: translation, color: E0AC70 }
+  - { strategy: background, background_default: theme-background/xmas.png }
+  - { strategy: vertical_scrollbar, track_color: E0AC70, thumb_color: F7E318 }
+  - { strategy: text, color: E0AC70, color_alt: BF222D, background_color: F7E318 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: E0AC70 }

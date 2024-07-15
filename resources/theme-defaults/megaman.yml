@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: FFFFFF }
+  - { strategy: translation, color: FFFFFF }
+  - { strategy: background, background_default: theme-background/megaman.png }
+  - { strategy: vertical_scrollbar, track_color: FFFFFF, thumb_color: 8BAC0F }
+  - { strategy: text, color: FFFFFF, color_alt: FFFFFF, background_color: 8BAC0F }
+  - { strategy: vertical_dot_scrollbar, dotcolor: FFFFFF }

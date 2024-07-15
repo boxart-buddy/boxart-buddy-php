@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: '333333' }
+  - { strategy: translation, color: '333333' }
+  - { strategy: background, background_default: theme-background/royal-navy.png }
+  - { strategy: vertical_scrollbar, track_color: '333333', thumb_color: '000000' }
+  - { strategy: text, color: '333333', color_alt: ffffff, background_color: '000000' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: '333333' }

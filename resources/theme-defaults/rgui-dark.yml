@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: '878787' }
+  - { strategy: translation, color: '878787' }
+  - { strategy: background, background_default: theme-background/rgui-dark.png }
+  - { strategy: vertical_scrollbar, track_color: '878787', thumb_color: '000000' }
+  - { strategy: text, color: '878787', color_alt: ffffff, background_color: '000000' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: '878787' }

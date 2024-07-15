@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: D3D3D3 }
+  - { strategy: translation, color: D3D3D3 }
+  - { strategy: background, background_default: theme-background/art-book-next-v2.png }
+  - { strategy: vertical_scrollbar, track_color: D3D3D3, thumb_color: FFFFFF }
+  - { strategy: text, color: D3D3D3, color_alt: FFFFFF, background_color: FFFFFF }
+  - { strategy: vertical_dot_scrollbar, dotcolor: D3D3D3 }

@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: EEEEEE }
+  - { strategy: translation, color: EEEEEE }
+  - { strategy: background, background_default: theme-background/tang-o-radient.png }
+  - { strategy: vertical_scrollbar, track_color: EEEEEE, thumb_color: 7799cc }
+  - { strategy: text, color: EEEEEE, color_alt: eeeeee, background_color: 7799cc }
+  - { strategy: vertical_dot_scrollbar, dotcolor: EEEEEE }

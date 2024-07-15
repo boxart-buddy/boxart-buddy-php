@@ -1,0 +1,51 @@
+game-logo-scrolling:
+  metadata:
+    type: sibling
+    interface: 'full+front'
+  description: "Game logos"
+  package_name: 'game-logo-scrolling'
+  artwork:
+    file: 'large_game_logo_central.xml'
+  folder:
+    package: common
+    file: 'null.xml'
+  post_process:
+    - strategy: offset_with_siblings
+      offset_y: 110
+      offset_y_mode: scale
+      scale: 0.2
+      sibling_count: 3
+      effect: greyscale
+      loop: true
+    - strategy: background
+      use_background_default: true
+      background_default: 'theme-background/muos-classic.png'
+
+splitscreen:
+  metadata:
+    type: sibling
+    interface: 'full+front'
+  description: "Game logos on left, screenshot on right"
+  package_name: 'splitscreen'
+  artwork:
+    file: 'splitscreen-wheel.xml'
+  folder:
+    package: common
+    file: 'null.xml'
+  post_process:
+    - strategy: offset_with_siblings
+      offset_y: 90
+      offset_x_mode: adjust
+      offset_x: -160
+      scale: 0.5
+      sibling_count: 2
+      effect: greyscale
+      loop: true
+    - strategy: background
+      use_background_default: true
+      background_default: 'theme-background/muos-classic.png'
+    - strategy: artwork_generation
+      artwork_file: 'splitscreen-screenshot.xml'
+      layer: top
+    - strategy: background
+      overlay: 'right-hand-shadow.png'

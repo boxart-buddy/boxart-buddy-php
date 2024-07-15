@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: '979797' }
+  - { strategy: translation, color: '979797' }
+  - { strategy: background, background_default: theme-background/dotndot.png }
+  - { strategy: vertical_scrollbar, track_color: '979797', thumb_color: '000000' }
+  - { strategy: text, color: '979797', color_alt: f7fbf7, background_color: '000000' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: '979797' }

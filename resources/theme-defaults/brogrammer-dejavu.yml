@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: EEFFFF }
+  - { strategy: translation, color: EEFFFF }
+  - { strategy: background, background_default: theme-background/brogrammer-dejavu.png }
+  - { strategy: vertical_scrollbar, track_color: EEFFFF, thumb_color: '111111' }
+  - { strategy: text, color: EEFFFF, color_alt: 3399DD, background_color: '111111' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: EEFFFF }

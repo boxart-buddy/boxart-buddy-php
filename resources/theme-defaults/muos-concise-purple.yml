@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: 9a9aa6 }
+  - { strategy: translation, color: 9a9aa6 }
+  - { strategy: background, background_default: theme-background/muos-concise-purple.png }
+  - { strategy: vertical_scrollbar, track_color: 9a9aa6, thumb_color: 2c2c30 }
+  - { strategy: text, color: 9a9aa6, color_alt: dedeec, background_color: 2c2c30 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: 9a9aa6 }

@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: 6C6C6C }
+  - { strategy: translation, color: 6C6C6C }
+  - { strategy: background, background_default: theme-background/lcd-plus.png }
+  - { strategy: vertical_scrollbar, track_color: 6C6C6C, thumb_color: F7E318 }
+  - { strategy: text, color: 6C6C6C, color_alt: '131514', background_color: F7E318 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: 6C6C6C }

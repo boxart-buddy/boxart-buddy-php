@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: '000000' }
+  - { strategy: translation, color: '000000' }
+  - { strategy: background, background_default: theme-background/pop-battle-network-blue.png }
+  - { strategy: vertical_scrollbar, track_color: '000000', thumb_color: 5C9EFF }
+  - { strategy: text, color: '000000', color_alt: FFFFFF, background_color: 5C9EFF }
+  - { strategy: vertical_dot_scrollbar, dotcolor: '000000' }

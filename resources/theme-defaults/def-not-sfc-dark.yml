@@ -1,0 +1,2 @@
+post_process:
+  - { strategy: background, background_default: theme-background/def-not-sfc-dark.png }

@@ -1,0 +1,12 @@
+# For a list of names run the command:
+# make portmaster-names
+
+# supply rom names in this format
+#[ Balatro, StardewValley, 'Duke Nukem 3D', 'Grand Theft Auto 3', 'Sonic Mania', 'Cave Story' ]
+
+[ ]
+
+# or this format
+#- Balatro
+#- StardewValley
+#- 'Duke Nukem 3D'

@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: AAAAAA }
+  - { strategy: translation, color: AAAAAA }
+  - { strategy: background, background_default: theme-background/mudeck.png }
+  - { strategy: vertical_scrollbar, track_color: AAAAAA, thumb_color: '3E4349' }
+  - { strategy: text, color: AAAAAA, color_alt: FFFFFF, background_color: '3E4349' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: AAAAAA }

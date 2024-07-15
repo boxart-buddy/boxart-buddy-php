@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: BEBEBE }
+  - { strategy: translation, color: BEBEBE }
+  - { strategy: background, background_default: theme-background/terminal.png }
+  - { strategy: vertical_scrollbar, track_color: BEBEBE, thumb_color: '001100' }
+  - { strategy: text, color: BEBEBE, color_alt: FFFF00, background_color: '001100' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: BEBEBE }

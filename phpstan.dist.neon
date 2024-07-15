@@ -1,0 +1,14 @@
+parameters:
+    level: 8
+    paths:
+        - bin/
+        - config/
+        - src/
+        - tests/
+    excludePaths:
+    	- src/Translator/Fuzzy/
+    ignoreErrors:
+    -
+        identifier: missingType.iterableValue
+    symfony:
+        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml

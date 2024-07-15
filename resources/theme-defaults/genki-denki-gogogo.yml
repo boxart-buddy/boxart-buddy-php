@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: F8BBD0 }
+  - { strategy: translation, color: F8BBD0 }
+  - { strategy: background, background_default: theme-background/genki-denki-gogogo.png }
+  - { strategy: vertical_scrollbar, track_color: F8BBD0, thumb_color: 68d0db }
+  - { strategy: text, color: F8BBD0, color_alt: febac5, background_color: 68d0db }
+  - { strategy: vertical_dot_scrollbar, dotcolor: F8BBD0 }

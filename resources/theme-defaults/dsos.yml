@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: 7e7e7e }
+  - { strategy: translation, color: 7e7e7e }
+  - { strategy: background, background_default: theme-background/dsos.png }
+  - { strategy: vertical_scrollbar, track_color: 7e7e7e, thumb_color: '000000' }
+  - { strategy: text, color: 7e7e7e, color_alt: '282828', background_color: '000000' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: 7e7e7e }

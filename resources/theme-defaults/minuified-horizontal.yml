@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: '979797', font_family: vag_rounded, font_variant: bold }
+  - { strategy: translation, color: '979797', font_family: vag_rounded, font_variant: bold }
+  - { strategy: background, background_default: theme-background/minuified-horizontal.png }
+  - { strategy: vertical_scrollbar, track_color: '979797', thumb_color: '000000' }
+  - { strategy: text, color: '979797', color_alt: f7fbf7, background_color: '000000', font_family: vag_rounded, font_variant: bold }
+  - { strategy: vertical_dot_scrollbar, dotcolor: '979797' }

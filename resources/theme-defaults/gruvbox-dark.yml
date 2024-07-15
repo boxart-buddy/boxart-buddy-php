@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: A89984 }
+  - { strategy: translation, color: A89984 }
+  - { strategy: background, background_default: theme-background/gruvbox-dark.png }
+  - { strategy: vertical_scrollbar, track_color: A89984, thumb_color: '282828' }
+  - { strategy: text, color: A89984, color_alt: FE8019, background_color: '282828' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: A89984 }

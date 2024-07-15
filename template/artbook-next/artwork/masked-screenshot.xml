@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artwork>
+    <output type="cover" width="640" height="480">
+
+        <layer resource="screenshot"
+               height="{{ (480 * ((rom|trans({}, 'screenshot-y-multiply', locale))|default(1)) * ((locale|trans({}, 'screenshot-y-multiply', locale))|default(1))) | round }}"
+               align="center"
+               valign="middle"
+               y="{{ ((rom|trans({}, 'screenshot-offset-y', locale))|default('0')* 1) + ((locale|trans({}, 'screenshot-offset-y', locale))|default('0')* 1) }}"
+               x="{{ ((rom|trans({}, 'screenshot-offset-x', locale)|default(0)) * 1)|round }}">
+        </layer>
+
+        <mask file="mask/full-flat.png" width="640" height="480"/>
+    </output>
+
+    <output type="screenshot" width="515" height="275">
+        <layer resource="screenshot" height="275" align="center" valign="middle"/>
+    </output>
+</artwork>

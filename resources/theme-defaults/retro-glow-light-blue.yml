@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: '373737' }
+  - { strategy: translation, color: '373737' }
+  - { strategy: background, background_default: theme-background/retro-glow-light-blue.png }
+  - { strategy: vertical_scrollbar, track_color: '373737', thumb_color: F7E318 }
+  - { strategy: text, color: '373737', color_alt: fff9c4, background_color: F7E318 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: '373737' }

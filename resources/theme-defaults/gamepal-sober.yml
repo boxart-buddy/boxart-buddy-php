@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: 5e627a, font_family: bariol, font_variant: bold }
+  - { strategy: translation, color: 5e627a, font_family: bariol, font_variant: bold }
+  - { strategy: background, background_default: theme-background/gamepal-sober.png }
+  - { strategy: vertical_scrollbar, track_color: 5e627a, thumb_color: '000000' }
+  - { strategy: text, color: 5e627a, color_alt: e5dfe2, background_color: '000000', font_family: bariol, font_variant: bold }
+  - { strategy: vertical_dot_scrollbar, dotcolor: 5e627a }

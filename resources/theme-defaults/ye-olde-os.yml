@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: 53422e }
+  - { strategy: translation, color: 53422e }
+  - { strategy: background, background_default: theme-background/ye-olde-os.png }
+  - { strategy: vertical_scrollbar, track_color: 53422e, thumb_color: '000000' }
+  - { strategy: text, color: 53422e, color_alt: 5d0014, background_color: '000000' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: 53422e }

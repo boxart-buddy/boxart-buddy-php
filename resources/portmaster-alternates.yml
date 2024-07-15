@@ -1,0 +1,93 @@
+'StardewValley':
+  'crc': '504ecc37'
+  'platform': 'switch'
+'Celeste Classic':
+  'crc': 'F0775494'
+  'platform': 'switch'
+'Grand Theft Auto 3':
+  'crc': '1582e336'
+  'platform': 'ps2'
+'Grand Theft Auto Vice City':
+  'crc': '5c222a03'
+  'platform': 'ps2'
+'Cave Story':
+  'crc': '847E70CC'
+  'platform': 'wii'
+'Cave Story-evo':
+  'crc': '847E70CC'
+  'platform': 'wii'
+'Star Wars Jedi Knight - Jedi Academy':
+  'romnom': 'Star Wars Jedi Knight - Jedi Academy'
+  'platform': 'switch'
+'Star Wars Jedi Knight II - Jedi Outcast':
+  'romnom': 'Star Wars Jedi Knight II - Jedi Outcast'
+  'platform': 'switch'
+'Chasm':
+  'crc': 'e90c9212'
+  'platform': 'switch'
+'descent2':
+  'crc': 'cdc0a7e7'
+  'platform': 'psx'
+'descent':
+  'crc': '19f8ffee'
+  'platform': 'psx'
+'Doom 3':
+  'crc': '1b0784a4'
+  'platform': 'xbox'
+'Duke Nukem 3D':
+  'crc': '6BD2ACCB'
+  'platform': 'megadrive'
+'F2bgl':
+  'crc': 'D51A2D79'
+  'platform': 'psx'
+'Fallout 1':
+  'romnom': 'Fallout'
+  'platform': 'steam'
+'Fallout 2':
+  'romnom': 'Fallout 2'
+  'platform': 'steam'
+'Freesynd':
+  'crc': '95BBF87B'
+  'platform': 'megadrive'
+'Half-Life':
+  'romnom': 'Half-Life'
+  'platform': 'steam'
+'Sonic 1':
+  'crc': 'F9394E97'
+  'platform': 'megadrive'
+'Sonic 2':
+  'crc': '24AB4C3A'
+  'platform': 'megadrive'
+'Sonic CD':
+  'romnom': 'Sonic CD'
+  'platform': 'steam'
+'Sonic Mania':
+  'crc': '9FF054CB'
+  'platform': 'switch'
+'TMNTShreddersRevenge':
+  'crc': 'A60B5ECA'
+  'platform': 'switch'
+'Spelunky':
+  'romnom': 'Spelunky'
+  'platform': 'pc'
+'TowerFall Ascension':
+  'crc': '0f18209d'
+  'platform': 'switch'
+'Undertale':
+  'romnom': 'Undertale'
+  'platform': 'steam'
+'Shovel Knight':
+  'romnom': 'Shovel Knight'
+  'platform': 'steam'
+'Devilutionx':
+  'romnom': 'Diablo'
+  'platform': 'steam'
+'Quake':
+  'romnom': 'Quake'
+  'platform': 'steam'
+'AM2R':
+  'romnom': 'AM2R - Return of Samus'
+  'platform': 'steam'
+#'xxx':
+#  'crc': 'xxx'
+#  'platform': 'xxxx'

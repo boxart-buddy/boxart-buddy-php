@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: FFFFFF }
+  - { strategy: translation, color: FFFFFF }
+  - { strategy: background, background_default: theme-background/windows-95.png }
+  - { strategy: vertical_scrollbar, track_color: FFFFFF, thumb_color: ccbb3d }
+  - { strategy: text, color: FFFFFF, color_alt: ccbb3d, background_color: ccbb3d }
+  - { strategy: vertical_dot_scrollbar, dotcolor: FFFFFF }

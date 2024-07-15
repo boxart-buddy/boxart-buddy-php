@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: '808080' }
+  - { strategy: translation, color: '808080' }
+  - { strategy: background, background_default: theme-background/muos-x-mountain-lion.png }
+  - { strategy: vertical_scrollbar, track_color: '808080', thumb_color: '355783' }
+  - { strategy: text, color: '808080', color_alt: ffffff, background_color: '355783' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: '808080' }

@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: ffffff }
+  - { strategy: translation, color: ffffff }
+  - { strategy: background, background_default: theme-background/muxbox-dark.png }
+  - { strategy: vertical_scrollbar, track_color: ffffff, thumb_color: 95c343 }
+  - { strategy: text, color: ffffff, color_alt: 95c343, background_color: 95c343 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: ffffff }

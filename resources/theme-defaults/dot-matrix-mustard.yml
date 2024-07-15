@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: 825A02, font_family: pixel, font_variant: c64esque }
+  - { strategy: translation, color: 825A02, font_family: pixel, font_variant: c64esque }
+  - { strategy: background, background_default: theme-background/dot-matrix-mustard.png }
+  - { strategy: vertical_scrollbar, track_color: 825A02, thumb_color: 825A02 }
+  - { strategy: text, color: 825A02, color_alt: FFF399, background_color: 825A02, font_family: pixel, font_variant: c64esque }
+  - { strategy: vertical_dot_scrollbar, dotcolor: 825A02 }

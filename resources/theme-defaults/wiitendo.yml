@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: '464646' }
+  - { strategy: translation, color: '464646' }
+  - { strategy: background, background_default: theme-background/wiitendo.png }
+  - { strategy: vertical_scrollbar, track_color: '464646', thumb_color: 49cbfb }
+  - { strategy: text, color: '464646', color_alt: 49cbfb, background_color: 49cbfb }
+  - { strategy: vertical_dot_scrollbar, dotcolor: '464646' }

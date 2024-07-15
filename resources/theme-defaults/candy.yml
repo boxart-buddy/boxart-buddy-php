@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: CB34D3 }
+  - { strategy: translation, color: CB34D3 }
+  - { strategy: background, background_default: theme-background/candy.png }
+  - { strategy: vertical_scrollbar, track_color: CB34D3, thumb_color: F7E318 }
+  - { strategy: text, color: CB34D3, color_alt: 75257C, background_color: F7E318 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: CB34D3 }

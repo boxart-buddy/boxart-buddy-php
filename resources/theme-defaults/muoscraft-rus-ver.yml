@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: bdbdbd }
+  - { strategy: translation, color: bdbdbd }
+  - { strategy: background, background_default: theme-background/muoscraft-rus-ver.png }
+  - { strategy: vertical_scrollbar, track_color: bdbdbd, thumb_color: '000000' }
+  - { strategy: text, color: bdbdbd, color_alt: ffffff, background_color: '000000' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: bdbdbd }

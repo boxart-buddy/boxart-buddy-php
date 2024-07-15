@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: 08dd08 }
+  - { strategy: translation, color: 08dd08 }
+  - { strategy: background, background_default: theme-background/pip-boy-frameless.png }
+  - { strategy: vertical_scrollbar, track_color: 08dd08, thumb_color: 08dd08 }
+  - { strategy: text, color: 08dd08, color_alt: '050905', background_color: 08dd08 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: 08dd08 }

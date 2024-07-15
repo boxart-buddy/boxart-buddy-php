@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: b29600 }
+  - { strategy: translation, color: b29600 }
+  - { strategy: background, background_default: theme-background/purple-night.png }
+  - { strategy: vertical_scrollbar, track_color: b29600, thumb_color: '504985' }
+  - { strategy: text, color: b29600, color_alt: ffd700, background_color: '504985' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: b29600 }

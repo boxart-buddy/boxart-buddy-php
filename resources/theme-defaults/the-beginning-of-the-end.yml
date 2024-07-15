@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: '787878' }
+  - { strategy: translation, color: '787878' }
+  - { strategy: background, background_default: theme-background/the-beginning-of-the-end.png }
+  - { strategy: vertical_scrollbar, track_color: '787878', thumb_color: ebebeb }
+  - { strategy: text, color: '787878', color_alt: ffffff, background_color: ebebeb }
+  - { strategy: vertical_dot_scrollbar, dotcolor: '787878' }

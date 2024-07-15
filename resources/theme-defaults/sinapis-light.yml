@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: '212224' }
+  - { strategy: translation, color: '212224' }
+  - { strategy: background, background_default: theme-background/sinapis-light.png }
+  - { strategy: vertical_scrollbar, track_color: '212224', thumb_color: DBA700 }
+  - { strategy: text, color: '212224', color_alt: C69200, background_color: DBA700 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: '212224' }

@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: ad0000 }
+  - { strategy: translation, color: ad0000 }
+  - { strategy: background, background_default: theme-background/muvb.png }
+  - { strategy: vertical_scrollbar, track_color: ad0000, thumb_color: '000000' }
+  - { strategy: text, color: ad0000, color_alt: ad0000, background_color: '000000' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: ad0000 }

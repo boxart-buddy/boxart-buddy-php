@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: 0abdc6 }
+  - { strategy: translation, color: 0abdc6 }
+  - { strategy: background, background_default: theme-background/cyberpunk-neon.png }
+  - { strategy: vertical_scrollbar, track_color: 0abdc6, thumb_color: F7E318 }
+  - { strategy: text, color: 0abdc6, color_alt: D300C4, background_color: F7E318 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: 0abdc6 }

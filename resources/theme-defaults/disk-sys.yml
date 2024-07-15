@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: feffff }
+  - { strategy: translation, color: feffff }
+  - { strategy: background, background_default: theme-background/disk-sys.png }
+  - { strategy: vertical_scrollbar, track_color: feffff, thumb_color: ff6400 }
+  - { strategy: text, color: feffff, color_alt: a7a4e0, background_color: ff6400 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: feffff }

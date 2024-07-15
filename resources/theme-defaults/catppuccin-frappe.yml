@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: c6d0f5 }
+  - { strategy: translation, color: c6d0f5 }
+  - { strategy: background, background_default: theme-background/catppuccin-frappe.png }
+  - { strategy: vertical_scrollbar, track_color: c6d0f5, thumb_color: '303446' }
+  - { strategy: text, color: c6d0f5, color_alt: eebebe, background_color: '303446' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: c6d0f5 }

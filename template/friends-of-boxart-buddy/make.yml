@@ -1,0 +1,61 @@
+incognitoman-retro-dither:
+  metadata:
+    type: standalone
+    interface: 'full+behind'
+  description: "Retro dither with Cover artwork card"
+  package_name: 'incognitoman-retro-dither'
+  artwork:
+    file: 'retro-dither.xml'
+
+jdcross-brush-torn:
+  metadata:
+    type: standalone
+    interface: 'full+front'
+  description: 'torn brush effect mask with game logo'
+  package_name: jdcross-brush-torn
+  artwork:
+    file: jdcross-brush.xml
+  post_process:
+    - strategy: background
+      overlay: brush_shadow_black.png
+
+jdcross-brush-emboss:
+  metadata:
+    type: standalone
+    interface: 'full+front'
+  description: 'emboss brush effect mask with game logo'
+  package_name: jdcross-brush-emboss
+  artwork:
+    file: jdcross-brush.xml
+  post_process:
+    - strategy: background
+      overlay: brush_shadow_white.png
+
+tokumeino-simple-box-cart:
+  metadata:
+    type: standalone
+    interface: 'full+behind'
+  description: "Game box with game cart in front"
+  package_name: 'tokumeino-simple-box-cart'
+  artwork:
+    file: 'simple-box-cart.xml'
+
+tokumeino-game-logo:
+  metadata:
+    type: standalone
+    interface: 'full+behind'
+  description: "Screenshot w/game logo"
+  package_name: 'tokumeino-game-logo'
+  artwork:
+    file: 'full-gradient-screen-wheel.xml'
+
+tokumeino-game-logo-halftone:
+  metadata:
+    type: standalone
+    interface: 'full+behind'
+  description: "Screenshot with 'halftone dots' mask w/game logo"
+  package_name: 'tokumeino-game-logo-halftone'
+  artwork:
+    file: 'full-gradient-screen-wheel.xml'
+    token:
+      mask: 'mask/toku/muos-halftone-dots.png'

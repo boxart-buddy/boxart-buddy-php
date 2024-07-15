@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: f8f8f8 }
+  - { strategy: translation, color: f8f8f8 }
+  - { strategy: background, background_default: theme-background/johtos.png }
+  - { strategy: vertical_scrollbar, track_color: f8f8f8, thumb_color: f8f8f8 }
+  - { strategy: text, color: f8f8f8, color_alt: f8f8f8, background_color: f8f8f8 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: f8f8f8 }

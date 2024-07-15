@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: 39B03C }
+  - { strategy: translation, color: 39B03C }
+  - { strategy: background, background_default: theme-background/fallout-caution.png }
+  - { strategy: vertical_scrollbar, track_color: 39B03C, thumb_color: F7E318 }
+  - { strategy: text, color: 39B03C, color_alt: 54ED5A, background_color: F7E318 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: 39B03C }

@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: A5B2B5 }
+  - { strategy: translation, color: A5B2B5 }
+  - { strategy: background, background_default: theme-background/vcros.png }
+  - { strategy: vertical_scrollbar, track_color: A5B2B5, thumb_color: '000000' }
+  - { strategy: text, color: A5B2B5, color_alt: FFFFFF, background_color: '000000' }
+  - { strategy: vertical_dot_scrollbar, dotcolor: A5B2B5 }

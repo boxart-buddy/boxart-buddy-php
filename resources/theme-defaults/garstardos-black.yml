@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: ffffff }
+  - { strategy: translation, color: ffffff }
+  - { strategy: background, background_default: theme-background/garstardos-black.png }
+  - { strategy: vertical_scrollbar, track_color: ffffff, thumb_color: FFFFFF }
+  - { strategy: text, color: ffffff, color_alt: '000000', background_color: FFFFFF }
+  - { strategy: vertical_dot_scrollbar, dotcolor: ffffff }

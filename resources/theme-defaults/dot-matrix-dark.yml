@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: FFFFFF, font_family: pixel, font_variant: c64esque }
+  - { strategy: translation, color: FFFFFF, font_family: pixel, font_variant: c64esque }
+  - { strategy: background, background_default: theme-background/dot-matrix-dark.png }
+  - { strategy: vertical_scrollbar, track_color: FFFFFF, thumb_color: '848484' }
+  - { strategy: text, color: FFFFFF, color_alt: '000000', background_color: '848484', font_family: pixel, font_variant: c64esque }
+  - { strategy: vertical_dot_scrollbar, dotcolor: FFFFFF }

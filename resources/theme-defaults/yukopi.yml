@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: 50CFFF }
+  - { strategy: translation, color: 50CFFF }
+  - { strategy: background, background_default: theme-background/yukopi.png }
+  - { strategy: vertical_scrollbar, track_color: 50CFFF, thumb_color: 50CFFF }
+  - { strategy: text, color: 50CFFF, color_alt: 4662DB, background_color: 50CFFF }
+  - { strategy: vertical_dot_scrollbar, dotcolor: 50CFFF }

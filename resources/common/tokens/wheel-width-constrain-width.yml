@@ -1,0 +1,19 @@
+# some wheels are way too big, this file allows correction
+# the file assumes the wheel will be resized relative to a baseline of 240px
+'mame':
+  'guwange*': 80
+'gb':
+  'Final Fantasy Adventure*': 120
+'gbc':
+  "John Romero's Daikatana*": 140
+'nes':
+  "Low G Man*": 120
+'snes':
+  "Radical Rex*": 140
+  "Cool Spot*": 120
+  "NBA Jam - Tournament Edition*": 200
+'neogeo':
+  "Aero Fighters 2*": 160
+'ps2':
+  "Grand Theft Auto 3": 120
+  "Grand Theft Auto Vice City": 120

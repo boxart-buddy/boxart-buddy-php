@@ -1,0 +1,7 @@
+post_process:
+  - { strategy: counter, color: 654fb7 }
+  - { strategy: translation, color: 654fb7 }
+  - { strategy: background, background_default: theme-background/street-fighter.png }
+  - { strategy: vertical_scrollbar, track_color: 654fb7, thumb_color: 0c0016 }
+  - { strategy: text, color: 654fb7, color_alt: dddddd, background_color: 0c0016 }
+  - { strategy: vertical_dot_scrollbar, dotcolor: 654fb7 }

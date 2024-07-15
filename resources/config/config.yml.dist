@@ -1,0 +1,33 @@
+# absolute path to the root of you rom folder (required)
+rom_folder: ~
+
+# credentials for your account on screenscraper.fr (required)
+screenscraper_user: 'user'
+screenscraper_pass: 'password'
+
+# if left null (~), will default to the default location (i.e ~/.skyscraper)
+#skyscraper_config_folder_path: ~
+
+# the name of the romset you are generating against. Is used in naming packages
+romset_name: custom
+
+#optimize:
+#  enabled: true
+#  convert_to_jpg: false
+#  jpg_quality: 85
+#sftp:
+#  ip: 0.0.0.0
+#  user: muos
+#  pass: muos
+#  port: 2022
+#preview:
+#  type: 'both'
+#  animation_frames: 100
+#  animation_format: webp
+#  grid_size: 3
+#  theme:
+#  - gamepal-sneslight
+#  - gbos-minimal
+#  - dot-matrix-green
+#  - minuified-horizontal
+#  copy_back: false
