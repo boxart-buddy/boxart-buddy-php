@@ -37,7 +37,7 @@ class ValidateInstallCommand extends Command
         $this->checkPeasPresent($io, $this->configReader);
         $io->done('Skyscraper Config Files Present');
 
-        $io->complete('Installation is valid, now run `make bootstrap`, `make scrape` and then `make build`');
+        $io->complete('Installation is valid! `cd boxart-buddy` then run `make bootstrap`, `make scrape` and `make build`');
 
         return Command::SUCCESS;
     }
