@@ -143,6 +143,7 @@ fi
 
 # change back to script location to install BB
 cd "$( dirname "${BASH_SOURCE[0]}")" || exit
+# this is a bit of a mess and needs reworked
 mkdir -p boxart-buddy
 cd boxart-buddy || exit
 
@@ -166,6 +167,8 @@ if [ "$LATEST" == "$VERSION" ]; then
     printf '%s\n' "running 'rm VERSION'. Then run $0 again."
 
 else
+  cd "$( dirname "${BASH_SOURCE[0]}")" || exit
+
   echo "--- Fetching Boxart Buddy v$LATEST ---"
   tarball="${LATEST}.tar.gz"
   wget -nv https://github.com/boxart-buddy/boxart-buddy/archive/"$tarball" || handle_error "fetch"
