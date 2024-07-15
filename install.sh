@@ -19,12 +19,16 @@ if [[ $OSTYPE == linux* ]]; then
   source /etc/os-release
 
   if [[ "$ID" = 'archarm' ]]; then
-    pacman -S php imagemagick php-imagick bzip2 wget jpegoptim optipng pngquant p7zip unzip qt5-base qt5-tools qt5ct composer base-devel
+    pacman -S --needed php imagemagick php-imagick bzip2 wget jpegoptim optipng pngquant p7zip unzip qt5-base qt5-tools qt5ct composer base-devel
     sed -i.bak 's/^;extension=intl/extension=intl/' /etc/php/php.ini
     sed -i 's/^;extension=bcmath$/extension=bcmath/' /etc/php/php.ini
     sed -i 's/^;extension=bz2/extension=bz2/' /etc/php/php.ini
     sed -i 's/^;extension=gettext/extension=gettext/' /etc/php/php.ini
     sed -i 's/^;extension=exif/extension=exif/' /etc/php/php.ini
+    sed -i 's/^;extension=iconv/extension=iconv/' /etc/php/php.ini
+
+    sed -i 's/^; extension = imagick/extension=imagick/' /etc/php/conf.d/imagick.ini
+    sed -i 's/^;extension=imagick/extension=imagick/' /etc/php/conf.d/imagick.ini
 
   elif [[ "$ID" == @(rhel|centos|fedora|almalinux|rocky) ]]; then
 
