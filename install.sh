@@ -26,11 +26,11 @@ if [[ $OSTYPE == linux* ]]; then
     sed -i 's/^;extension=gettext/extension=gettext/' /etc/php/php.ini
     sed -i 's/^;extension=exif/extension=exif/' /etc/php/php.ini
 
-  if [[ "$ID" == @(rhel|centos|fedora|almalinux|rocky) ]]; then
+  elif [[ "$ID" == @(rhel|centos|fedora|almalinux|rocky) ]]; then
 
     sudo dnf update
 
-    MACHINE=`uname -m`
+    MACHINE=$(uname -m)
     MAJOR_VERSION=${VERSION_ID%%.*}
     USEREMI=true
     if [ "$MAJOR_VERSION" = '8' ]; then
@@ -114,19 +114,19 @@ then
     SSINSTALLED=true
 fi
 
-if $SSINSTALLED && Skyscraper --version | grep -q $SSLATEST; then
+if $SSINSTALLED && Skyscraper --version | grep -q "$SSLATEST"; then
     echo "Skyscraper present at version $SSLATEST, nothing to do"
 else
     # if installed then update if script is there
     if ! test -f "$HOME/skyscraper/update_skyscraper.sh"; then
-        cd $HOME
+        cd "$HOME" || exit
         mkdir -p skyscraper
-        cd skyscraper
+        cd skyscraper || exit
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Gemba/skyscraper/master/update_skyscraper.sh)"
         # wget -q -O - https://raw.githubusercontent.com/Gemba/skyscraper/master/update_skyscraper.sh | bash
       else
         echo 'running update_skyscraper.sh'
-        cd $HOME/skyscraper
+        cd "$HOME"/skyscraper || exit
         /bin/bash "$HOME/skyscraper/update_skyscraper.sh"
     fi
 
@@ -138,9 +138,9 @@ else
 fi
 
 # change back to script location to install BB
-cd "$( dirname "${BASH_SOURCE[0]}")"
+cd "$( dirname "${BASH_SOURCE[0]}")" || exit
 mkdir -p boxart-buddy
-cd boxart-buddy
+cd boxart-buddy || exit
 
 # download latest release
 LATEST=$(wget -q -O - "https://api.github.com/repos/boxart-buddy/boxart-buddy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
@@ -168,15 +168,18 @@ else
 
   echo "--- Unpacking ---"
   tar_bin='tar'
-  [[ "$OSTYPE" == "darwin"* ]] && tar_bin='gtar'
-    $tar_bin xzf "$tarball" --strip-components 1 --overwrite || handle_error "unpack"
+  if [[ "$OSTYPE" == "darwin"* ]] ; then
+    tar_bin='gtar'
+  fi
+
+  $tar_bin xzf "$tarball" --strip-components 1 --overwrite || handle_error "unpack"
   rm -f "$tarball"
 
   echo "--- Boxart Buddy has been updated to v$LATEST ---"
 fi
 
 # composer install
-cd $HOME/boxart-buddy
+cd "$HOME"/boxart-buddy || exit
 composer install
 
 # run console command to check everything is working
