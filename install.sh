@@ -155,7 +155,7 @@ handle_error() {
 }
 
 source VERSION 2>/dev/null || VERSION=""
-if [ "$LATEST" != "$VERSION" ]; then
+if [ "$LATEST" = "$VERSION" ]; then
 
     printf '\n%s\n' "--- already the latest version, exiting ---"
     printf '%s\n' "Hint: You can force a reinstall by removing the VERSION file by"
