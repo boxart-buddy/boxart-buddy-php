@@ -179,7 +179,6 @@ else
 fi
 
 # composer install
-cd "$HOME"/boxart-buddy || exit
 composer install
 
 # run console command to check everything is working
