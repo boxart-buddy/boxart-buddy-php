@@ -75,7 +75,7 @@ readonly class HugoResourceCreator
         array $variant
     ): HugoTemplateDataFixtureEntry {
         $previewName = $variant['package_name'].'.webp';
-        $previewPath = sprintf('template/preview/%s', $previewName);
+        $previewPath = sprintf('/docs/template/preview/%s', $previewName);
         $themePreviewPaths = [];
         $themePreviewPaths['default'] = $previewPath;
 
@@ -84,7 +84,7 @@ readonly class HugoResourceCreator
             $themePreviewName = sprintf('%s-%s.webp', $variant['package_name'], $theme);
             $themePreviewPath = $this->path->joinWithBase(FolderNames::TEMPLATE->value, $templateName, 'preview', $themePreviewName);
             if ($filesystem->exists($themePreviewPath)) {
-                $themePreviewPaths[$theme] = sprintf('/boxart-buddy/template/preview/%s', $themePreviewName);
+                $themePreviewPaths[$theme] = sprintf('/docs/template/preview/%s', $themePreviewName);
             }
         }
 

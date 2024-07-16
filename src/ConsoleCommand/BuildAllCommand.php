@@ -6,6 +6,7 @@ use App\Command\Factory\BuildCommandCollectionFactory;
 use App\Command\Handler\CentralHandler;
 use App\Config\Reader\ConfigReader;
 use App\Config\Validator\ConfigValidator;
+use App\ConsoleCommand\Interactive\PostProcessChoice;
 use App\ConsoleCommand\Interactive\PromptChoices;
 use App\ConsoleCommand\Interactive\PromptOptionsGenerator;
 use App\Util\Console\BlockSectionHelper;
@@ -62,7 +63,7 @@ class BuildAllCommand extends Command
             }
             foreach ($options->getVariants($package) as $variant => $variantDescription) {
                 $defaultOptions = $options->getOptionDefaults($package, $variant);
-                $artwork = $folder = $portmaster = $zip = $transfer = false;
+                $artwork = $folder = $portmaster = false;
 
                 foreach ($defaultOptions as $o) {
                     if ('artwork' === $o) {
@@ -74,27 +75,21 @@ class BuildAllCommand extends Command
                     if ('portmaster' === $o) {
                         $portmaster = true;
                     }
-                    if ('zip' === $o) {
-                        $zip = true;
-                    }
-                    if ('transfer' === $o) {
-                        $transfer = true;
-                    }
                 }
 
                 $postProcessChoices = $this->getPostProcessChoicesByPackageAndVariant($package, $variant);
 
-                $themes = [];
+                $themes = [null];
                 if ($this->promptOptionsGenerator->isThemeable($package, $variant, $postProcessChoices)) {
                     $themes = $this->configReader->getConfig()->previewThemes;
                     $themes[] = null;
                 }
 
                 foreach ($themes as $theme) {
-                    $choices = new PromptChoices($package, $variant, $artwork, $folder, $portmaster, $zip, $transfer, $postProcessChoices, $theme);
+                    $choices = new PromptChoices($package, $variant, $artwork, $folder, $portmaster, false, false, $postProcessChoices, $theme);
 
-                    $io->section('build-choices');
-                    $io->help("Building with last run choices:\n\n".$choices->prettyPrint());
+                    $io->section(sprintf('build-choices-%s:%s', $choices->package, $choices->variant));
+                    $io->help("Building with choices:\n\n".$choices->prettyPrint());
 
                     $buildCommandCollection = $this->buildCommandCollectionFactory->create($choices);
                     $this->centralHandler->handleBuildCommandCollection($buildCommandCollection);
@@ -111,13 +106,12 @@ class BuildAllCommand extends Command
     private function getPostProcessChoicesByPackageAndVariant(string $package, string $variant): array
     {
         return match (sprintf('%s:%s', $package, $variant)) {
-            'artbook-next:artbook-next-vertical' => [['strategy' => 'counter', 'position' => 'bottom-right', 'background' => true]],
-            'cartwheel:cartwheel-right-game-logo' => [['strategy' => 'counter', 'position' => 'bottom']],
-            'cartwheel:cartwheel-stacked-boxes' => [['strategy' => 'counter', 'position' => 'bottom-right']],
-            'game-logo-list:game-logo-scrolling' => [['strategy' => 'vertical_dot_scrollbar', 'position' => 'right']],
-            'game-logo-list:splitscreen' => [['strategy' => 'vertical_scrollbar', 'position' => 'left']],
-            'minimal:text-screenshot' => [['strategy' => 'counter', 'position' => 'absolute-bottom-right']],
-            'minimal:text-only' => [['strategy' => 'vertical_dot_scrollbar', 'position' => 'right']],
+            'artbook-next:artbook_next_vertical' => [new PostProcessChoice('counter', ['position' => 'bottom-right', 'background' => true])],
+            'cartwheel:cartwheel_right_game_logo' => [new PostProcessChoice('counter', ['position' => 'bottom'])],
+            'game-logo-list:game_logo_scrolling' => [new PostProcessChoice('vertical_dot_scrollbar', ['position' => 'right'])],
+            'game-logo-list:splitscreen' => [new PostProcessChoice('vertical_scrollbar', ['position' => 'left'])],
+            'minimal:text_screenshot' => [new PostProcessChoice('counter', ['position' => 'absolute-bottom-right'])],
+            'minimal:text_only' => [new PostProcessChoice('vertical_dot_scrollbar', ['position' => 'right'])],
             default => []
         };
     }

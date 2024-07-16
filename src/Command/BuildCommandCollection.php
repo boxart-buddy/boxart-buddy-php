@@ -6,6 +6,7 @@ namespace App\Command;
 class BuildCommandCollection
 {
     public function __construct(
+        public string $id,
         private ?CopyResourcesCommand $copyResourcesCommand = null,
         private ?PackageCommand $packageCommand = null,
         private ?OptimizeCommand $optimizeCommand = null,

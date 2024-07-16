@@ -6,9 +6,6 @@ game-logo-scrolling:
   package_name: 'game-logo-scrolling'
   artwork:
     file: 'large_game_logo_central.xml'
-  folder:
-    package: common
-    file: 'null.xml'
   post_process:
     - strategy: offset_with_siblings
       offset_y: 110
@@ -29,9 +26,6 @@ splitscreen:
   package_name: 'splitscreen'
   artwork:
     file: 'splitscreen-wheel.xml'
-  folder:
-    package: common
-    file: 'null.xml'
   post_process:
     - strategy: offset_with_siblings
       offset_y: 90

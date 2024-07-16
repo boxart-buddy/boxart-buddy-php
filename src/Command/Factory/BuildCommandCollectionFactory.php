@@ -57,7 +57,7 @@ readonly class BuildCommandCollectionFactory
         $makeVariant = $this->getMakeVariant($choices);
         $packageName = $makeVariant['package_name'];
 
-        $buildCommandCollection = new BuildCommandCollection();
+        $buildCommandCollection = new BuildCommandCollection(sprintf('%s:%s', $choices->package, $choices->variant));
 
         $templatePackages = $this->getTemplatePackages($choices->package, $makeVariant);
 
@@ -152,9 +152,9 @@ readonly class BuildCommandCollectionFactory
 
                 if ('artwork_generation' === $postProcessOptions['strategy']) {
                     $postProcessOptions['artwork_package'] = $postProcessOptions['artwork_package'] ?? $makeVariant['artwork']['package'];
-                    $postProcessOptions['artwork_file'] = $postProcessOptions['artwork_file'] ?? $makeVariant['artwork']['file'];
+                    $postProcessOptions['artwork_file'] = $postProcessOptions['artwork_file'] ?? $makeVariant['artwork']['file'] ?? null;
                     $postProcessOptions['folder_package'] = $postProcessOptions['folder_package'] ?? $makeVariant['folder']['package'];
-                    $postProcessOptions['folder_file'] = $postProcessOptions['folder_file'] ?? $makeVariant['folder']['file'];
+                    $postProcessOptions['folder_file'] = $postProcessOptions['folder_file'] ?? $makeVariant['folder']['file'] ?? null;
                 }
 
                 $strategy = $postProcessOptions['strategy'];

@@ -4,7 +4,7 @@ namespace App\Command;
 
 readonly class PreviewCommand implements TargetableCommandInterface
 {
-    public const NAME = 'generate-animated-preview';
+    public const NAME = 'generate-preview';
 
     public function __construct(
         public string $target,
@@ -15,7 +15,7 @@ readonly class PreviewCommand implements TargetableCommandInterface
 
     public function getTarget(): string
     {
-        return 'animated';
+        return 'preview';
     }
 
     public function getName(): string

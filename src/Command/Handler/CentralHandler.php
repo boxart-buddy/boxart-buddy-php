@@ -20,6 +20,7 @@ use App\Event\CommandProcessingStageCompletedEvent;
 use App\Event\CommandProcessingStageFailedEvent;
 use App\Event\CommandProcessingStageProgressedEvent;
 use App\Event\CommandProcessingStageStartedEvent;
+use App\Event\CommandProcessingStartedEvent;
 use App\FolderNames;
 use App\Generator\SkippedRomImportDataGenerator;
 use App\Util\Path;
@@ -101,6 +102,8 @@ readonly class CentralHandler
         $this->deleteOutputFolder();
         $this->skippedRomImportDataGenerator->resetMissingRomFile();
 
+        $this->eventDispatcher->dispatch(new CommandProcessingStartedEvent($collection->id));
+
         if ($collection->hasCopyResourcesCommand()) {
             $this->eventDispatcher->dispatch(new CommandProcessingStageStartedEvent(CopyResourcesCommand::NAME));
             try {
@@ -168,15 +171,15 @@ readonly class CentralHandler
         }
 
         if ($collection->hasPreviewCommands()) {
-            $this->eventDispatcher->dispatch(new CommandProcessingStageStartedEvent('preview', true, count($collection->getPreviewCommands())));
+            $this->eventDispatcher->dispatch(new CommandProcessingStageStartedEvent(PreviewCommand::NAME, true, count($collection->getPreviewCommands())));
             try {
                 foreach ($collection->getPreviewCommands() as $cmd) {
-                    $this->eventDispatcher->dispatch(new CommandProcessingStageProgressedEvent('preview', $cmd->getTarget()));
+                    $this->eventDispatcher->dispatch(new CommandProcessingStageProgressedEvent(PreviewCommand::NAME, $cmd->getTarget()));
                     $this->handle($cmd);
                 }
-                $this->eventDispatcher->dispatch(new CommandProcessingStageCompletedEvent('preview'));
+                $this->eventDispatcher->dispatch(new CommandProcessingStageCompletedEvent(PreviewCommand::NAME));
             } catch (\Throwable $e) {
-                $this->eventDispatcher->dispatch(new CommandProcessingStageFailedEvent('preview', $e->getMessage()));
+                $this->eventDispatcher->dispatch(new CommandProcessingStageFailedEvent(PreviewCommand::NAME, $e->getMessage()));
             }
         }
 

@@ -23,7 +23,7 @@ new-template:  ## Creates a new template folder, ready for editing
 theme-to-default: ## Transforms theme data from /themes into default date for overriding make configs
 	php bin/console theme-to-default
 template-to-hugo: ## Updates data used in documentation from template makefile data
-	php bin/console template-to-hugo
+	php bin/console template-to-hugo '../boxart-buddy-docs'
 stan: ## run static analysis
 	vendor-php/bin/phpstan
 portmaster-names: ## Prints a list of portmaster games, useful to find the correct name for config files

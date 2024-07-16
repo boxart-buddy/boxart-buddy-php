@@ -15,6 +15,7 @@ final class ConsoleEventListener
 {
     private BlockSectionHelper $blockSectionHelper;
     private ProgressBar|ProgressIndicator|null $progress = null;
+    private ?string $sectionNamespace;
 
     public function __construct(
         LoggerInterface $logger,
@@ -29,12 +30,20 @@ final class ConsoleEventListener
     }
 
     #[AsEventListener]
+    public function onCommandProcessingStartedEvent(CommandProcessingStartedEvent $event): void
+    {
+        $this->sectionNamespace = $event->name;
+    }
+
+    #[AsEventListener]
     public function onCommandProcessingStageStartedEvent(CommandProcessingStageStartedEvent $event): void
     {
         if (!$this->runtimeModeCli) {
             return;
         }
-        $this->blockSectionHelper->section($event->name);
+        $section = null !== $this->sectionNamespace ? sprintf('%s-%s', $event->name, $this->sectionNamespace) : $event->name;
+
+        $this->blockSectionHelper->section($section);
         $this->blockSectionHelper->wait($event->name);
 
         if (!$event->withProgression) {
