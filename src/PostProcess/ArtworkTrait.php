@@ -12,7 +12,7 @@ trait ArtworkTrait
     {
         $sortOrder = $orderedListProvider->getOrderedList($images);
 
-        ksort($images);
+        uksort($images, 'strnatcasecmp');
 
         if (!empty($sortOrder)) {
             // need to sort by the ultimate folder name not the current filename
