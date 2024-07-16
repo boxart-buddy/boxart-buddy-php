@@ -39,21 +39,21 @@ if [[ $OSTYPE == linux* ]]; then
     USEREMI=true
     if [ "$MAJOR_VERSION" = '8' ]; then
       sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-      sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+      sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-8.rpm
     elif [ "$MAJOR_VERSION" = '9' ]; then
       sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-      sudo dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+      sudo dnf install -y https://rpms.remirepo.net/enterprise/remi-release-9.rpm
     elif [ "$MAJOR_VERSION" = '38' ]; then
       if [ "$MACHINE" != "aarch64" ]; then
           #"Remi not supported for aarch64 below Fedora 39 "
-          sudo dnf install https://rpms.remirepo.net/fedora/remi-release-38.rpm
+          sudo dnf install -y https://rpms.remirepo.net/fedora/remi-release-38.rpm
       else
         USEREMI=false
       fi
     elif [ "$MAJOR_VERSION" = '39' ]; then
-      sudo dnf install https://rpms.remirepo.net/fedora/remi-release-39.rpm
+      sudo dnf install -y https://rpms.remirepo.net/fedora/remi-release-39.rpm
     elif [ "$MAJOR_VERSION" = '40' ]; then
-      sudo dnf install https://rpms.remirepo.net/fedora/remi-release-40.rpm
+      sudo dnf install -y https://rpms.remirepo.net/fedora/remi-release-40.rpm
     else
       echo "CANNOT AUTO INSTALL ON THIS LINUX VERSION. PLEASE INSTALL MANUALLY"
       echo "ID: $ID"
@@ -65,7 +65,14 @@ if [[ $OSTYPE == linux* ]]; then
       sudo dnf module enable php:remi-8.2
     fi
 
-    sudo dnf install ImageMagick php php-cli php-common php-json php-zip php-pecl-imagick php-bz2 php-curl php-mbstring php-intl wget unzip p7zip p7zip-plugins jpegoptim optipng pngquant qtchooser qt5-qtbase* qt-devel qt5-qttools-devel composer
+    sudo dnf install -y ImageMagick php php-cli php-common php-json php-zip php-bz2 php-curl php-mbstring php-intl wget unzip p7zip p7zip-plugins jpegoptim optipng pngquant qtchooser qt5-qtbase* qt-devel qt5-qttools-devel composer
+
+    if [ "$USEREMI" = true ]; then
+      sudo dnf install -y php-pecl-imagick-im7
+    fi
+    if [ "$USEREMI" = false ]; then
+      sudo dnf install -y php-pecl-imagick
+    fi
 
     # if no qmake then try to use an alternative (required on Fedora 38 at least)
     if ! command -v qmake &> /dev/null; then
@@ -111,7 +118,7 @@ if ! command -v composer &> /dev/null; then
 fi
 
 # Install SS - non default install paths not supported...
-SSLATEST=$(wget -q -O - "https://api.github.com/repos/Gemba/skyscraper/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+SSLATEST=$(wget -q -O - "https://api.github.com/repos/Gemba/skyscraper/releases/latest" | grep '"tag_name":' | sed -n 's/.*"tag_name":[[:space:]]*"\([^"]*\)".*/\1/p')
 SSINSTALLED=false
 if command -v Skyscraper &> /dev/null
 then
@@ -148,7 +155,7 @@ mkdir -p boxart-buddy
 cd boxart-buddy || exit
 
 # download latest release
-LATEST=$(wget -q -O - "https://api.github.com/repos/boxart-buddy/boxart-buddy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+LATEST=$(wget -q -O - "https://api.github.com/repos/boxart-buddy/boxart-buddy/releases/latest" | grep '"tag_name":' | sed -n 's/.*"tag_name":[[:space:]]*"\([^"]*\)".*/\1/p')
 [[ -z "$LATEST" ]] && printf '%s\n' "--- Remote server unreachable. Check internet connectivity. Exiting. ---" && exit 1
 
 handle_error() {
