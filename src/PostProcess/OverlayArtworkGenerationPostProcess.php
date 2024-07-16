@@ -72,15 +72,6 @@ class OverlayArtworkGenerationPostProcess implements PostProcessInterface
             false
         );
 
-        //        if (CommandNamespace::PORTMASTER === $namespace) {
-        //            // for portmaster
-        //            $commands = $this->commandFactory->createGenerateArtworkCommandForPortmaster(
-        //                $split['artworkPackage'],
-        //                $split['filename'],
-        //                ('' !== $options['token']) ? TokenUtility::parseRuntimeTokens($options['token']) : []
-        //            );
-        //        }
-
         // hack to wipe the output folder every time to ensure no clashes with earlier generations
         $filesystem = new Filesystem();
         $outputFolder = $this->path->joinWithBase(FolderNames::TEMP->value, 'output');
@@ -151,14 +142,27 @@ class OverlayArtworkGenerationPostProcess implements PostProcessInterface
 
             if ('bottom' === $layer) {
                 $generatedImage = $manager->read($generatedImagePath);
-                $canvas->place($generatedImage);
+                $canvas->place($generatedImage,
+                    'center',
+                    $options[OverlayArtworkGenerationPostProcessOptions::OFFSET_GENERATED_X],
+                    $options[OverlayArtworkGenerationPostProcessOptions::OFFSET_GENERATED_Y]
+                );
             }
 
-            $canvas->place($originalFilePath);
+            $canvas->place(
+                $originalFilePath,
+                'center',
+                $options[OverlayArtworkGenerationPostProcessOptions::OFFSET_ORIGINAL_X],
+                $options[OverlayArtworkGenerationPostProcessOptions::OFFSET_ORIGINAL_Y]
+            );
 
             if ('top' === $layer) {
                 $generatedImage = $manager->read($generatedImagePath);
-                $canvas->place($generatedImage);
+                $canvas->place($generatedImage,
+                    'center',
+                    $options[OverlayArtworkGenerationPostProcessOptions::OFFSET_GENERATED_X],
+                    $options[OverlayArtworkGenerationPostProcessOptions::OFFSET_GENERATED_Y]
+                );
             }
 
             // save to original location

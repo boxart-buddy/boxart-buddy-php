@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artwork>
+
+    {% set platformLogoPath = "system-logos/dark-color/" ~ ('logo'|trans({}, 'logo', locale)) %}
+    {% set folderImagePath = "osx-folder.png" %}
+
+    <output type="cover" width="640" height="480">
+
+        <layer resource="{{ folderImagePath }}"
+               width="56" height="42" align="center" valign="middle" x="-260">
+        </layer>
+
+        <layer resource="{{ platformLogoPath }}"
+               width="{{resourcehelper.fit(platformLogoPath, 46, 28, 46, 28 )['w'] }}"
+               height="{{resourcehelper.fit(platformLogoPath, 46, 28, 46, 28 )['h'] }}"
+               align="center" valign="middle" x="-260">
+        </layer>
+
+    </output>
+
+    <output type="screenshot" width="515" height="275">
+        <layer resource="screenshot" height="275" align="center" valign="middle"/>
+    </output>
+</artwork>

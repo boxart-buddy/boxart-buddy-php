@@ -33,8 +33,20 @@ class BackgroundImagePostProcess implements PostProcessInterface
     {
         $this->setupSaveBehaviour(false);
 
+        $includeFiles = $command->files;
+        $includeFolders = $command->files;
+
+        if (isset($command->options[BackgroundImagePostProcessOptions::EXCLUDE]) && 'artwork' === $command->options[BackgroundImagePostProcessOptions::EXCLUDE]) {
+            $includeFiles = false;
+        }
+
+        if (isset($command->options[BackgroundImagePostProcessOptions::EXCLUDE]) && 'folder' === $command->options[BackgroundImagePostProcessOptions::EXCLUDE]) {
+            $includeFolders = false;
+        }
+
         $options = $this->processOptions($command->options, BackgroundImagePostProcessOptions::class);
-        $images = $this->packagedImagePathProvider->getPackagedImagePathsBySourceFolder($command->source, $command->package, $command->files, $command->folders);
+        $images = $this->packagedImagePathProvider->getPackagedImagePathsBySourceFolder($command->source, $command->package, $includeFiles, $includeFolders);
+
         $this->processWorkset($images, $options);
         $this->mirrorTemporaryFolderIfRequired($images);
     }
@@ -65,7 +77,12 @@ class BackgroundImagePostProcess implements PostProcessInterface
                     throw new \InvalidArgumentException(sprintf('Background image "%s" does not exist', $bg));
                 }
 
-                $canvas->place($bg);
+                $canvas->place(
+                    $bg,
+                    'center',
+                    $options[BackgroundImagePostProcessOptions::OFFSET_ORIGINAL_X],
+                    $options[BackgroundImagePostProcessOptions::OFFSET_ORIGINAL_Y]
+                );
             }
 
             if (isset($options[BackgroundImagePostProcessOptions::BACKGROUND])) {

@@ -1,0 +1,55 @@
+osx-mountain-lion:
+  metadata:
+    type: sibling
+    interface: 'full+front'
+  description: 'Generates specific boxart for OSX Mountain Lion Theme'
+  package_name: osx-mountain-lion
+  artwork:
+    file: osx-tiny-screenshot.xml
+  folder:
+    file: osx-tiny-folder.xml
+  post_process:
+    - strategy: text
+      font_family: lucida-grande
+      font_variant: regular
+      color: '000000'
+      text_bg_opacity: 0
+      size: xs
+      position: left
+      text_x: 80
+      text_y: -2
+      text_bg_width_forced: 596
+      text_bg_height_forced: 52
+      text_truncate_neg_width: 70
+    - strategy: background
+      background: 'image-frame.png'
+      exclude: folder
+    - strategy: offset_with_siblings
+      offset_y: 52
+      sibling-count: 3
+      loop: true
+    - strategy: text
+      font_family: lucida-grande
+      font_variant: regular
+      background_color: 3975D7
+      color: 'FFFFFF'
+      background_style: square
+      text_bg_opacity: 100
+      size: xs
+      position: left
+      text_x: 80
+      text_y: -2
+      text_bg_width_forced: 596
+      text_bg_height_forced: 52
+      text_truncate_neg_width: 70
+    - strategy: background
+      overlay: 'image-frame.png'
+      exclude: folder
+    - strategy: artwork_generation
+      artwork_file: 'osx-tiny-screenshot.xml'
+      folder_file: 'osx-tiny-folder.xml'
+      layer: top
+      offset_original_y: 20
+      offset_generated_y: 20
+    - strategy: background
+      background: 'finder-bg.png'

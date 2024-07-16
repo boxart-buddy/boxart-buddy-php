@@ -125,6 +125,10 @@ class TextPostProcess implements PostProcessInterface
         $position = $options[TextPostProcessOptions::POSITION];
         $textShadow = $options[TextPostProcessOptions::TEXT_SHADOW];
         $trimBrackets = $options[TextPostProcessOptions::TRIM_BRACKETS];
+        $textOffsetX = $options[TextPostProcessOptions::TEXT_X];
+        $textOffsetY = $options[TextPostProcessOptions::TEXT_Y];
+        $bgWidthForced = $options[TextPostProcessOptions::TEXT_BG_WIDTH_FORCED];
+        $bgHeightForced = $options[TextPostProcessOptions::TEXT_BG_HEIGHT_FORCED];
 
         $manager = ImageManager::imagick();
 
@@ -159,11 +163,12 @@ class TextPostProcess implements PostProcessInterface
         }
         $stringCounter = 1;
         $truncated = $textToAdd; // for phpstan
+        $textTruncateNegWidth = $options[TextPostProcessOptions::TEXT_TRUNCATE_NEG_WIDTH];
         while ($stringCounter < 100) {
             $attempt = substr($textToAdd, 0, $stringCounter);
             $metrics = $this->getFontMetrics($options, $this->pathProvider, (float) $fontSize, $attempt);
             $width = $metrics['textWidth'];
-            if ($width > $canvasX - 50) {
+            if ($width > $canvasX - $textTruncateNegWidth) {
                 $truncated = $truncated.'…';
                 break;
             }
@@ -192,6 +197,15 @@ class TextPostProcess implements PostProcessInterface
 
         $bgPaddingY = 4 * 8;
         $bgPaddingX = $bgHeight + $bgPaddingY;
+
+        if (0 !== $bgWidthForced) {
+            $bgPaddingX = 0;
+            $bgWidth = $bgWidthForced;
+        }
+        if (0 !== $bgHeightForced) {
+            $bgPaddingY = 0;
+            $bgHeight = $bgHeightForced;
+        }
 
         if (100 !== $textBgOpacity) {
             $bgc = Color::create($textBgColor);
@@ -238,8 +252,6 @@ class TextPostProcess implements PostProcessInterface
 
         $bgCanvas->place($bg, 'left', $bgPaddingX / 2);
 
-        $textYOffset = 4;
-
         // text shadow
         if ($textShadow) {
             $c = Color::create($textColor);
@@ -251,7 +263,7 @@ class TextPostProcess implements PostProcessInterface
                 $c->blue()->value(), // @phpstan-ignore method.notFound
                 (int) round((255 / 100) * $textShadowAlpha)
             );
-            $bgCanvas->text($textToAdd, ($bgPaddingX / 2) + $textShadowOffset, ($canvasY / 2) + $textYOffset + $textShadowOffset, function (FontFactory $font) use ($fontPath, $textShadowColor, $textHAlign, $canvasX, $fontSize) {
+            $bgCanvas->text($textToAdd, ($bgPaddingX / 2) + $textShadowOffset + $textOffsetX, ($canvasY / 2) + $textShadowOffset + $textOffsetY, function (FontFactory $font) use ($fontPath, $textShadowColor, $textHAlign, $canvasX, $fontSize) {
                 $font->filename($fontPath);
                 $font->size($fontSize);
                 $font->color($textShadowColor);
@@ -263,7 +275,7 @@ class TextPostProcess implements PostProcessInterface
         }
 
         // write text onto BG
-        $bgCanvas->text($textToAdd, $bgPaddingX / 2, ($canvasY / 2) + $textYOffset, function (FontFactory $font) use ($fontPath, $textColor, $textHAlign, $canvasX, $fontSize) {
+        $bgCanvas->text($textToAdd, ($bgPaddingX / 2) + $textOffsetX, ($canvasY / 2) + $textOffsetY, function (FontFactory $font) use ($fontPath, $textColor, $textHAlign, $canvasX, $fontSize) {
             $font->filename($fontPath);
             $font->size($fontSize);
             $font->color($textColor);

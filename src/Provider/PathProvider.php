@@ -80,7 +80,7 @@ readonly class PathProvider
     public function getFontPath(string $family, ?string $variant = null): string
     {
         if ('vag_rounded' === $family) {
-            return $this->path->joinWithBase('resources', 'font', 'vag_rounded', 'VAG-Rounded-Bold.ttf');
+            return $this->path->joinWithBase('resources', 'font', 'vag-rounded', 'VAG-Rounded-Bold.ttf');
         }
 
         if ('cousine' === $family) {
@@ -91,6 +91,15 @@ readonly class PathProvider
                 default => $this->path->joinWithBase('resources', 'font', 'cousine', 'Cousine-Regular.ttf')
             };
         }
+
+        if ('lucida-grande' === $family) {
+            return match ($variant) {
+                'bold' => $this->path->joinWithBase('resources', 'font', 'lucida-grande', 'bold.ttf'),
+                'regular' => $this->path->joinWithBase('resources', 'font', 'lucida-grande', 'regular.ttf'),
+                default => $this->path->joinWithBase('resources', 'font', 'lucida-grande', 'regular.ttf')
+            };
+        }
+
         if ('roboto' === $family) {
             return match ($variant) {
                 'black' => $this->path->joinWithBase('resources', 'font', 'roboto', 'Roboto-Black.ttf'),

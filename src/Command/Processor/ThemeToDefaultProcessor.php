@@ -162,6 +162,7 @@ readonly class ThemeToDefaultProcessor
             'dot-matrix-green','dot-matrix-dark', 'dot-matrix-mustard', 'dot-matrix-pink' => ['family' => 'pixel', 'variant' => 'c64esque'],
             'gamepal-lcdlight','gamepal-lcdnight','gamepal-light','gamepal-night','gamepal-sneslight','gamepal-snesnight','gamepal-sober' => ['family' => 'bariol', 'variant' => 'bold'],
             'minuified-horizontal', 'minuified-vertical' => ['family' => 'vag_rounded', 'variant' => 'bold'],
+            'muos-x-mountain-lion' => ['family' => 'lucidia-grande', 'variant' => 'regular'],
             default => null
         };
     }

@@ -2,10 +2,6 @@
 <artwork>
     <output type="cover" width="640" height="480">
 
-        <!--        <layer width="640" height="480">-->
-        <!--            <layer resource="inner-frame.png" x="218" align="left" valign="center"></layer>-->
-        <!--        </layer>-->
-
         <layer resource="system-logos/{{ 'logo-type'|trans({}, 'general', locale)|default('dark-white') }}/{{ 'logo'|trans({}, 'logo', locale) }}"
                width="320" align="center" valign="middle">
             <stroke width="{{ platform|trans({}, 'system-stroke-width', platform)|default('0') }}"

@@ -14,6 +14,10 @@ class OverlayArtworkGenerationPostProcessOptions implements ConfigurationInterfa
     public const FOLDER_FILE = 'folder_file';
     public const TOKEN = 'token';
     public const LAYER = 'layer';
+    public const OFFSET_ORIGINAL_X = 'offset_original_x';
+    public const OFFSET_ORIGINAL_Y = 'offset_original_y';
+    public const OFFSET_GENERATED_X = 'offset_generated_x';
+    public const OFFSET_GENERATED_Y = 'offset_generated_y';
 
     public function getConfigTreeBuilder(): TreeBuilder
     {
@@ -43,6 +47,22 @@ class OverlayArtworkGenerationPostProcessOptions implements ConfigurationInterfa
                     ->values(['top', 'bottom'])
                     ->defaultValue('top')
                     ->info('Layer the option on top or underneath')
+                ->end()
+                ->integerNode(self::OFFSET_ORIGINAL_X)
+                    ->defaultValue(0)
+                    ->info('Offsets the original image X value')
+                ->end()
+                ->integerNode(self::OFFSET_ORIGINAL_Y)
+                    ->defaultValue(0)
+                    ->info('Offsets the original image Y value')
+                ->end()
+                ->integerNode(self::OFFSET_GENERATED_X)
+                    ->defaultValue(0)
+                    ->info('Offsets the generated image X value')
+                ->end()
+                ->integerNode(self::OFFSET_GENERATED_Y)
+                    ->defaultValue(0)
+                    ->info('Offsets the generated image Y value')
                 ->end()
             ->end();
 

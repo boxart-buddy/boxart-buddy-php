@@ -6,6 +6,7 @@ use App\Model\Artwork;
 use App\Skyscraper\CacheReader;
 use App\Translator\Fuzzy\FuzzyMatchingTranslator;
 use App\Util\Path;
+use App\Util\SkyscraperResourceImageSizingHelper;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Translation\Loader\ArrayLoader;
@@ -21,7 +22,8 @@ class ArtworkTranslator
 
     public function __construct(
         readonly private Path $path,
-        readonly private CacheReader $cacheReader
+        readonly private CacheReader $cacheReader,
+        readonly private SkyscraperResourceImageSizingHelper $skyscraperResourceImageSizingHelper,
     ) {
         $this->translator = new FuzzyMatchingTranslator('default');
         $this->translator->setFallbackLocales(['default']);
@@ -112,6 +114,7 @@ class ArtworkTranslator
         }
 
         $vars['helper'] = $this->cacheReader->getImageSizingHelperForRom($romAbsolutePath, $locale, 'screenshot');
+        $vars['resourcehelper'] = $this->skyscraperResourceImageSizingHelper;
 
         return $twig->render(
             'template',

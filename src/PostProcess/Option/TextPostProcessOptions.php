@@ -25,6 +25,11 @@ class TextPostProcessOptions implements ConfigurationInterface
     public const TEXT_FONT_VARIANT = 'font_variant';
     public const TRIM_BRACKETS = 'trim_brackets';
     public const TEXT_SHADOW = 'shadow';
+    public const TEXT_X = 'text_x';
+    public const TEXT_Y = 'text_y';
+    public const TEXT_BG_WIDTH_FORCED = 'text_bg_width_forced';
+    public const TEXT_BG_HEIGHT_FORCED = 'text_bg_height_forced';
+    public const TEXT_TRUNCATE_NEG_WIDTH = 'text_truncate_neg_width';
 
     public function getConfigTreeBuilder(): TreeBuilder
     {
@@ -92,6 +97,27 @@ class TextPostProcessOptions implements ConfigurationInterface
                     ->defaultTrue()
                     ->info('Removes content in () and [] brackets')
                 ->end()
+                ->integerNode(self::TEXT_X)
+                    ->defaultValue(0)
+                    ->info('Adjusts the x position of text')
+                ->end()
+                ->integerNode(self::TEXT_Y)
+                    ->defaultValue(0)
+                    ->info('Adjusts the y position of text')
+                ->end()
+                ->integerNode(self::TEXT_BG_WIDTH_FORCED)
+                    ->defaultValue(0)
+                    ->info('Forces the width of the background')
+                ->end()
+                ->integerNode(self::TEXT_BG_HEIGHT_FORCED)
+                    ->defaultValue(0)
+                    ->info('Forces the height of the background')
+                ->end()
+                ->integerNode(self::TEXT_TRUNCATE_NEG_WIDTH)
+                    ->defaultValue(50)
+                    ->info('The value from the end of the bg canvas at which text is truncated')
+                ->end()
+
             ->end();
 
         return $treeBuilder;

@@ -13,6 +13,9 @@ class BackgroundImagePostProcessOptions implements ConfigurationInterface
     public const USE_BACKGROUND_DEFAULT = 'use_background_default';
     public const BACKGROUND = 'background';
     public const OVERLAY = 'overlay';
+    public const OFFSET_ORIGINAL_X = 'offset_original_x';
+    public const OFFSET_ORIGINAL_Y = 'offset_original_y';
+    public const EXCLUDE = 'exclude';
 
     public function getConfigTreeBuilder(): TreeBuilder
     {
@@ -37,6 +40,18 @@ class BackgroundImagePostProcessOptions implements ConfigurationInterface
                 ->booleanNode(self::USE_BACKGROUND_DEFAULT)
                     ->defaultFalse()
                     ->info('Should the default background be used? Default is false')
+                ->end()
+                ->integerNode(self::OFFSET_ORIGINAL_X)
+                    ->defaultValue(0)
+                    ->info('Offsets the original image X value')
+                ->end()
+                ->integerNode(self::OFFSET_ORIGINAL_Y)
+                    ->defaultValue(0)
+                    ->info('Offsets the original image Y value')
+                ->end()
+                ->enumNode(self::EXCLUDE)
+                    ->values(['artwork', 'folder'])
+                    ->defaultValue('')
                 ->end()
             ->end();
 

@@ -17,6 +17,7 @@ text-only:
       shadow: true
       font_family: vag_rounded
       font_variant: bold
+      text_y: 4
     - strategy: offset_with_siblings
       offset_y: 60
       sibling-count: 3
@@ -29,6 +30,7 @@ text-only:
       size: m
       font_family: vag_rounded
       font_variant: bold
+      text_y: 4
     - strategy: background
       use_background_default: true
       background_default: 'theme-background/muos-classic.png'
@@ -52,6 +54,7 @@ text-screenshot:
       shadow: true
       font_family: vag_rounded
       font_variant: bold
+      text_y: 4
     - strategy: offset_with_siblings
       offset_y: 60
       sibling-count: 3
@@ -64,6 +67,7 @@ text-screenshot:
       size: m
       font_family: vag_rounded
       font_variant: bold
+      text_y: 4
     - strategy: artwork_generation
       artwork_package: minimal
       artwork_file: 'screenshot.xml'
