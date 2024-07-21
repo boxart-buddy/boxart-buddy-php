@@ -4,7 +4,9 @@ namespace App\ConsoleCommand;
 
 use App\Command\Factory\CommandFactory;
 use App\Command\Handler\CentralHandler;
+use App\Config\Reader\ConfigReader;
 use App\Config\Validator\ConfigValidator;
+use App\Lock\LockIO;
 use App\Portmaster\PortmasterDataImporter;
 use App\Util\Console\BlockSectionHelper;
 use Psr\Log\LoggerInterface;
@@ -23,13 +25,16 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ScrapeCommand extends Command
 {
     use PlatformOverviewTrait;
+    use PreflightCheckTrait;
 
     public function __construct(
         readonly private CommandFactory $commandFactory,
         readonly private CentralHandler $centralHandler,
         readonly private ConfigValidator $configValidator,
         readonly private LoggerInterface $logger,
-        readonly private PortmasterDataImporter $portmasterDataImporter
+        readonly private PortmasterDataImporter $portmasterDataImporter,
+        readonly private ConfigReader $configReader,
+        readonly private LockIO $lockIO
     ) {
         parent::__construct();
     }
@@ -46,11 +51,14 @@ class ScrapeCommand extends Command
             throw new \RuntimeException();
         }
 
-        $onlyMissing = $input->getOption('onlymissing');
-        $commands = $this->commandFactory->createPrimeCacheCommands($onlyMissing);
         $io = new BlockSectionHelper($input, $output, $this->logger);
         $io->heading();
+
+        $this->runPreflightChecks($io, $this->configReader, $this->lockIO);
         $this->printPlatformOverview($io, $this->configValidator);
+
+        $onlyMissing = $input->getOption('onlymissing');
+        $commands = $this->commandFactory->createPrimeCacheCommands($onlyMissing);
 
         if ($commands) {
             $io->section('prime-cache');

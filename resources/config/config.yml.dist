@@ -4,6 +4,7 @@ rom_folder: ~
 # credentials for your account on screenscraper.fr (required)
 screenscraper_user: 'user'
 screenscraper_pass: 'password'
+#scrape_threads: 1
 
 # if left null (~), will default to the default location (i.e ~/.skyscraper)
 #skyscraper_config_folder_path: ~

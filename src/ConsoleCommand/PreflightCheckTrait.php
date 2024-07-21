@@ -19,7 +19,7 @@ trait PreflightCheckTrait
     ): void {
         $io->section('preflight-checks');
 
-        $io->wait('Running preflight checks... (may be slow on network shares or large romsets)');
+        $io->wait('Running preflight checks... (may be slow on network shares or large romsets, stand by)');
 
         $romFolder = $configReader->getConfig()->romFolder;
         $filesystem = new Filesystem();
@@ -39,6 +39,7 @@ trait PreflightCheckTrait
 
         $this->checkSkyscraperInstalled($io);
         $this->checkPeasPresent($io, $this->configReader);
+        $this->checkPackageConfigForEveryFolder($io, $this->configReader);
 
         $io->done('Preflight checks complete', true);
     }
@@ -51,6 +52,18 @@ trait PreflightCheckTrait
             $io->failure($message, true);
 
             exit(Command::FAILURE);
+        }
+    }
+
+    private function checkPackageConfigForEveryFolder(BlockSectionHelper $io, ConfigReader $configReader): void
+    {
+        foreach ($configReader->getConfig()->folders as $folderName => $platformName) {
+            if (!array_key_exists($platformName, $this->configReader->getConfig()->package)) {
+                $message = sprintf('Platform `%s` is not represented in the package_muos_config.yml mapping file, please add it', $platformName);
+                $io->failure($message, true);
+
+                exit(Command::FAILURE);
+            }
         }
     }
 

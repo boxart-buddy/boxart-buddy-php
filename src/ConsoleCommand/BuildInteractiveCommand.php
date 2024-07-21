@@ -2,6 +2,7 @@
 
 namespace App\ConsoleCommand;
 
+use App\ApplicationConstant;
 use App\Command\Factory\BuildCommandCollectionFactory;
 use App\Command\Handler\CentralHandler;
 use App\Config\Reader\ConfigReader;
@@ -63,6 +64,9 @@ class BuildInteractiveCommand extends Command
     {
         $io = new BlockSectionHelper($input, $output, $this->logger);
         $io->heading();
+
+        $io->wait('Initializing. Please Wait...');
+
         $this->printPlatformOverview($io, $this->configValidator);
         $this->runPreflightChecks($io, $this->configReader, $this->lockIO);
 
@@ -147,7 +151,11 @@ class BuildInteractiveCommand extends Command
         );
         $this->lockIO->write(LockIO::KEY_LAST_RUN_BUILD, $choices);
 
+        $io->section('preparing-commands');
+        $io->wait('Preparing commands. Please Wait...');
         $buildCommandCollection = $this->buildCommandCollectionFactory->create($choices);
+        $io->done('Commands prepared', true);
+
         $this->centralHandler->handleBuildCommandCollection($buildCommandCollection);
 
         $packageName = $this->buildCommandCollectionFactory->getPackageName($choices);
@@ -159,7 +167,7 @@ class BuildInteractiveCommand extends Command
 
         $skipped = $this->skippedRomReader->getSkippedRomCount();
         if ($skipped > 0) {
-            $io->help(sprintf("%s roms were skipped as they were missing from the cache \n see: https://boxart-buddy.github.io/boxart-buddy/skipped/ for help", $skipped));
+            $io->help(sprintf("%s roms were skipped as they were missing from the cache \n see: %s/skipped/ for help", $skipped, ApplicationConstant::DOCS_URL));
         }
 
         return Command::SUCCESS;

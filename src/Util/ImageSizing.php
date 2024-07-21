@@ -27,4 +27,24 @@ readonly class ImageSizing
     {
         return $this->getWidthAndHeightToCover($width, $height);
     }
+
+    private function getWidthAndHeightToFit(int $width, int $height): array
+    {
+        // Calculate scale factors
+        $scaleWidth = $width / $this->width;
+        $scaleHeight = $height / $this->height;
+
+        $scale = min($scaleWidth, $scaleHeight);
+
+        $newWidth = ceil($scale * $this->width);
+        $newHeight = ceil($scale * $this->height);
+
+        return ['w' => $newWidth, 'h' => $newHeight];
+    }
+
+    // Alias for function as neater in template
+    public function fit(int $width, int $height): array
+    {
+        return $this->getWidthAndHeightToFit($width, $height);
+    }
 }

@@ -31,7 +31,8 @@ readonly class SkyscraperCommandDirector
             ->addFlag('nohints')
             ->setPlatform($platform)
             ->setScraper('screenscraper')
-            ->setInputPath($folderAbsolutePath);
+            ->setInputPath($folderAbsolutePath)
+            ->setThreads($config->scrapeThreads);
 
         if ($onlyMissing) {
             $commandBuilder->addFlag('onlymissing');

@@ -49,7 +49,7 @@ readonly class Path
 
     public static function getDirectorySize(string $directory): string
     {
-        $size = self::getOneDirectorySize($directory);
+        $size = self::getOneDirectorySize(SymfonyPath::canonicalize($directory));
 
         return self::formatBytes($size);
     }

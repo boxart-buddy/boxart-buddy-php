@@ -141,6 +141,9 @@ class ApplicationConfiguration implements ConfigurationInterface
                 ->booleanNode('portmaster_generate_all')
                     ->defaultFalse()
                 ->end()
+                ->integerNode('scrape_threads')
+                    ->defaultValue(1)
+                ->end()
             ->end();
 
         return $treeBuilder;

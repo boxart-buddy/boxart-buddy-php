@@ -22,9 +22,13 @@ trait PlatformOverviewTrait
         $tableHeader = ['Folder', 'Platform', 'File Count'];
         $tableBody = [];
 
+        $total = 0;
         foreach ($report as $folder => $data) {
             $tableBody[] = [$folder, $data['platform'], $data['count']];
+            $total = $total + $data['count'];
         }
+
+        $tableBody[] = ['TOTAL', 'TOTAL', $total];
 
         $io->style()->table(
             $tableHeader,

@@ -28,7 +28,7 @@ readonly class FolderRomProvider
         if ($singleRom) {
             $finder = new Finder();
             $finder->in($folderAbsolutePath);
-            $finder->files()->name($singleRom.'.*');
+            $finder->files()->exactName($singleRom, true);
 
             if ($finder->hasResults()) {
                 return $finder->first()->getRealPath();

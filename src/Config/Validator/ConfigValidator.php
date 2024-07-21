@@ -32,7 +32,7 @@ readonly class ConfigValidator
                 throw new InvalidConfigException(sprintf('Configured `%s` folder does not exist', $folder));
             }
             $finder = new Finder();
-            $finder->in($folderPath)->files();
+            $finder->in($folderPath)->files()->depth(0);
             $this->romExtensionProvider->addRomExtensionsToFinder($finder, $platform);
             $count = count($finder);
             $report[$folder] = [

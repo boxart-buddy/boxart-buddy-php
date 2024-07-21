@@ -60,9 +60,30 @@ when@prod:
       main:
         type: rotating_file
         path: "%kernel.logs_dir%/%kernel.environment%.log"
-        level: debug
-        channels: [ "!event" ]
+        level: error
+        channels: [ "!event", "!skyscraper", "!preview", "!postprocessing" ]
         max_files: 7
+      skyscraper:
+        type: rotating_file
+        path: "%kernel.logs_dir%/skyscraper.log"
+        level: error
+        channels: [ "skyscraper" ]
+        max_files: 7
+        formatter: 'App\Log\MonologLineFormatter'
+      preview:
+        type: rotating_file
+        path: "%kernel.logs_dir%/preview.log"
+        level: error
+        channels: [ "preview" ]
+        max_files: 7
+        formatter: 'App\Log\MonologLineFormatter'
+      postprocessing:
+        type: rotating_file
+        path: "%kernel.logs_dir%/postprocessing.log"
+        level: error
+        channels: [ "postprocessing" ]
+        max_files: 7
+        formatter: 'App\Log\MonologLineFormatter'
       console:
         type: console
         process_psr_3_messages: false

@@ -2,6 +2,7 @@
 
 namespace App\ConsoleCommand;
 
+use App\ApplicationConstant;
 use App\Command\Factory\BuildCommandCollectionFactory;
 use App\Command\Handler\CentralHandler;
 use App\Config\Reader\ConfigReader;
@@ -116,7 +117,7 @@ class BuildLastRunCommand extends Command
 
         $skipped = $this->skippedRomReader->getSkippedRomCount();
         if ($skipped > 0) {
-            $io->help(sprintf("%s roms were skipped as they were missing from the cache \n see: https://boxart-buddy.github.io/boxart-buddy/skipped/ for help", $skipped));
+            $io->help(sprintf("%s roms were skipped as they were missing from the cache \n see: %s/skipped/ for help", $skipped, ApplicationConstant::DOCS_URL));
         }
 
         return Command::SUCCESS;

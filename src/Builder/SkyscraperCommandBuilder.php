@@ -17,6 +17,7 @@ class SkyscraperCommandBuilder
         private ?int $verbosity = null,
         private ?string $romName = null,
         private ?string $query = null,
+        private ?int $threads = null,
     ) {
     }
 
@@ -43,6 +44,9 @@ class SkyscraperCommandBuilder
         }
         if (isset($this->scraper)) {
             $parts['-s'] = $this->scraper;
+        }
+        if (isset($this->threads)) {
+            $parts['-t'] = $this->threads;
         }
         if (isset($this->flags)) {
             $parts['--flags'] = implode(',', $this->flags);
@@ -161,6 +165,13 @@ class SkyscraperCommandBuilder
     public function setQuery(string $query): SkyscraperCommandBuilder
     {
         $this->query = $query;
+
+        return $this;
+    }
+
+    public function setThreads(int $threads): SkyscraperCommandBuilder
+    {
+        $this->threads = $threads;
 
         return $this;
     }

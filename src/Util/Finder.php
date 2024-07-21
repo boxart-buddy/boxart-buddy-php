@@ -17,4 +17,11 @@ class Finder extends SymfonyFinder
             return null;
         }
     }
+
+    public function exactName(string $exact, bool $greedy = false): static
+    {
+        $pattern = sprintf('/^(%s)%s$/', preg_quote($exact, '/'), $greedy ? '' : '.*');
+
+        return $this->name($pattern);
+    }
 }

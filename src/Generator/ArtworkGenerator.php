@@ -146,9 +146,10 @@ readonly class ArtworkGenerator
         $romName = Path::removeExtension(basename($romAbsolutePath));
 
         $finder = new Finder();
+
         $finder->in($base)->files()
-            ->name(sprintf('%s.png', $romName))
-            ->name(sprintf('%s.txt', $romName));
+            ->exactName(sprintf('%s.png', $romName))
+            ->exactName(sprintf('%s.txt', $romName));
 
         foreach ($finder as $file) {
             // This line will amend $folderNames like /SFC/MoreRoms/EvenMoreRoms to EvenMoreRoms

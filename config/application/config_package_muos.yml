@@ -35,7 +35,7 @@
 'fba': ~
 'fds': ~
 'fm7': ~
-'gameandwatch': ~
+'gameandwatch': 'Handheld Electronic - Game and Watch'
 'gamecom': ~
 'gamegear': 'Sega Game Gear'
 'gb': 'Nintendo Game Boy'
@@ -70,7 +70,7 @@
 'openbor': ~
 'oric': ~
 'palm': 'Palm OS'
-'pc': ~
+'pc': 'DOS'
 'pc88': 'NEC PC-8000 - PC-8800 series'
 'pc98': 'NEC PC98'
 'pcengine': 'NEC PC Engine'
@@ -105,7 +105,7 @@
 'ti99': ~
 'tic80': 'TIC-80'
 'trs-80': ~
-'vectrex': ~
+'vectrex': 'GCE-Vectrex'
 'vic20': 'Commodore VIC-20'
 'videopac': ~
 'virtualboy': 'Nintendo Virtual Boy'

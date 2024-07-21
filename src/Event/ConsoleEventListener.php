@@ -15,7 +15,7 @@ final class ConsoleEventListener
 {
     private BlockSectionHelper $blockSectionHelper;
     private ProgressBar|ProgressIndicator|null $progress = null;
-    private ?string $sectionNamespace;
+    private ?string $sectionNamespace = null;
 
     public function __construct(
         LoggerInterface $logger,
