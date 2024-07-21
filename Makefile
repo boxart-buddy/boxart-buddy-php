@@ -28,6 +28,8 @@ template-to-hugo: ## Updates data used in documentation from template makefile d
 	php bin/console template-to-hugo '../boxart-buddy-docs'
 stan: ## run static analysis
 	vendor-php/bin/phpstan
+update: ## Update Boxart Buddy to latest version
+	bash update.sh
 portmaster-names: ## Prints a list of portmaster games, useful to find the correct name for config files
 	php bin/console portmaster-read-metadata name
 validate-install:
