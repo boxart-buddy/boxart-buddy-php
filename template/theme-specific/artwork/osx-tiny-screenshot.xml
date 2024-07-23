@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Default Artwork.xml -->
 <artwork>
+
+    {% set cover = assetSize('screenshot').cover(52,40) %}
+
     <output type="cover" width="640" height="480">
-        {% if helper is not null %}
-        <layer resource="screenshot" height="{{ helper.cover(52,40)['h'] }}" width="{{ helper.cover(52,40)['w'] }}"
+        <layer resource="screenshot" height="{{ cover['h'] }}" width="{{ cover['w'] }}"
                align="center"
                valign="middle"
                x="-260">
         </layer>
-        {% else %}
-        <layer resource="screenshot" height="{{ helper.cover(52,40)['h'] }}" width="{{ helper.cover(52,40)['w'] }}"
-               align="center"
-               valign="middle"
-               x="-260">
-        </layer>
-        {% endif %}
 
         <mask file="image-frame-mask.png" width="640" height="480" align="center" valign="middle"/>
 

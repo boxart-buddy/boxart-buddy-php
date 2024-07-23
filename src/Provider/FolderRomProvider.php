@@ -5,7 +5,6 @@ namespace App\Provider;
 use App\Config\Reader\ConfigReader;
 use App\Skyscraper\RomExtensionProvider;
 use App\Util\Finder;
-use App\Util\Path;
 use Psr\Log\LoggerInterface;
 
 readonly class FolderRomProvider
@@ -21,8 +20,8 @@ readonly class FolderRomProvider
     public function getSingleRomByFolder(string $folderAbsolutePath): ?string
     {
         // try to match with the configured rom name if provided
-        $singleRom = $this->configReader->getConfig()->getSingleRomForFolder(
-            Path::remove($folderAbsolutePath, $this->configReader->getConfig()->romFolder)
+        $singleRom = $this->configReader->getConfig()->getSingleRomForPlatform(
+            $this->platformProvider->getPlatform($folderAbsolutePath)
         );
 
         if ($singleRom) {

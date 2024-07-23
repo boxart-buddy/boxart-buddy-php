@@ -49,7 +49,7 @@ readonly class SkippedRomImportDataGenerator
         $filesystem = new Filesystem();
         $finder = new Finder();
         $finder->in(Path::join($skyscraperConfigFolder));
-        $finder->files()->name('skipped-*-cache.txt');
+        $finder->files()->name('skipped-*-cache.txt')->depth(0);
         foreach ($finder as $file) {
             $filesystem->remove($file->getRealPath());
         }
@@ -65,7 +65,7 @@ readonly class SkippedRomImportDataGenerator
         // get files from SS directory
         $finder = new Finder();
         $finder->in(Path::join($skyscraperConfigFolder));
-        $finder->files()->name('skipped-*-cache.txt');
+        $finder->files()->name('skipped-*-cache.txt')->depth(0);
 
         if (!$finder->hasResults()) {
             return;

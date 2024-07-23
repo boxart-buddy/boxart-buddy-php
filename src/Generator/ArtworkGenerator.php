@@ -187,7 +187,8 @@ readonly class ArtworkGenerator
         $artworkTranslated = $this->artworkTranslator->translateArtwork(
             $artwork,
             $platform,
-            $romAbsolutePath
+            $romAbsolutePath,
+            $namespace
         );
 
         $filesystem->appendToFile(

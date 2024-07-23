@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artwork>
+
+    {% set platformLogoPath = "system-logos/dark-white/" ~ ('logo'|trans({}, 'logo', locale)) %}
+    {% set platformLogo = resourcehelper.fit(platformLogoPath, 200, 70) %}
+
+    {% set screenshot = assetSize('screenshot').cover(360,480) %}
+    {% set wheel = assetSize('wheel').fit(230,180) %}
+
+    <output type="cover" width="640" height="480">
+
+        <layer resource="screenshot"
+               height="{{ screenshot['h'] }}"
+               width="{{ screenshot['w'] }}"
+               align="center"
+               valign="middle"
+               x="140">
+            <opacity value="65"/>
+        </layer>
+
+        <mask file="mask/game-list-right-screenshot.png" width="640" height="480"/>
+
+        {% if namespace != 'folder' %}
+        <layer resource="wheel"
+               width="{{ wheel['w'] }}"
+               height="{{ wheel['h'] }}"
+               align="center" valign="middle"
+               x="140">
+        </layer>
+
+        {% endif %}
+
+        <layer resource="{{ platformLogoPath }}"
+               width="{{ platformLogo['w'] }}"
+               height="{{ platformLogo['h'] }}"
+               align="center" valign="middle"
+               x="-180"
+               y="-170"
+        >
+            <opacity value="70"/>
+        </layer>
+
+    </output>
+</artwork>

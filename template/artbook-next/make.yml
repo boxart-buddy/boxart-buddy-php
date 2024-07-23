@@ -1,25 +1,3 @@
-artbook-next:
-  metadata:
-    type: sibling
-    interface: 'full+front'
-  description: "greycale siblings, white system logos w/ black outline"
-  package_name: 'artbook-next'
-  artwork:
-    file: 'masked-screenshot.xml'
-  folder:
-    file: 'masked-screenshot.xml'
-  portmaster:
-    file: 'masked-screenshot.xml'
-  post_process:
-    - strategy: offset_with_siblings
-      offset_x: 150
-      sibling-count: 3
-      loop: true
-      effect: greyscale
-    - strategy: artwork_generation
-      artwork_file: 'wheel-white-stroke.xml'
-      folder_file: 'system-logo.xml'
-
 artbook-next-alt:
   metadata:
     type: sibling
@@ -34,7 +12,7 @@ artbook-next-alt:
     file: 'masked-screenshot-frame.xml'
   post_process:
     - strategy: offset_with_siblings
-      offset_x: 150
+      offset_x: 146
       sibling-count: 3
       loop: true
     - strategy: background
@@ -43,24 +21,60 @@ artbook-next-alt:
       artwork_file: 'wheel-white-stroke.xml'
       folder_file: 'system-logo.xml'
 
-artbook-next-vertical:
+artbook-next-game-list:
   metadata:
     type: sibling
     interface: 'full+front'
-  description: "vertically stacked, white system logos w/ black outline"
-  package_name: 'artbook-next-vertical'
+  description: "Game listing page with left aligned list style menu"
+  package_name: 'artbook-next-alt-game-list'
   artwork:
-    file: 'masked-screenshot-vertical.xml'
+    file: 'null-screenshot.xml'
+    package: 'common'
   folder:
-    file: 'masked-screenshot-vertical.xml'
+    file: 'null-screenshot.xml'
+    package: 'common'
   portmaster:
-    file: 'masked-screenshot-vertical.xml'
+    file: 'null-screenshot.xml'
+    package: 'common'
   post_process:
+    - strategy: text
+      font_family: roboto
+      font_variant: bold
+      color: '7d7f7c'
+      text_bg_opacity: 0
+      size: xxs
+      position: left
+      #      text_x: 0
+      #      text_bg_width_forced: 596
+      #      text_bg_height_forced: 52
+      text_truncate_neg_width: 340
+      text_bg_height_forced: 32
+      text_y: -16
     - strategy: offset_with_siblings
-      offset_y: 144
-      sibling-count: 2
+      offset_y: 36
+      sibling-count: 6
       loop: true
-      effect: greyscale
+    - strategy: text
+      font_family: roboto
+      font_variant: bold
+      color: 'FFFFFF'
+      text_bg_opacity: 100
+      background_color: 000000
+      background_style: square
+      size: xxs
+      position: left
+      text_truncate_neg_width: 340
+      text_bg_height_forced: 32
+      text_y: -16
+    - strategy: background
+      overlay: 'game-list-left-platform-bg.png'
     - strategy: artwork_generation
-      artwork_file: 'wheel-white-stroke.xml'
-      folder_file: 'system-logo.xml'
+      artwork_file: 'game-list-with-platform.xml'
+      artwork_package: 'artbook-next'
+      folder_file: 'game-list-with-platform.xml'
+      folder_package: 'artbook-next'
+      layer: top
+      offset_original_x: -20
+    - strategy: background
+      background: 'game-list-left-background.png'
+      # change to default

@@ -3,6 +3,7 @@
 namespace App\Util;
 
 use App\Config\Reader\ConfigReader;
+use Intervention\Image\ImageManager;
 use Symfony\Component\Filesystem\Filesystem;
 
 readonly class SkyscraperResourceImageSizingHelper
@@ -12,7 +13,7 @@ readonly class SkyscraperResourceImageSizingHelper
     }
 
     // Alias for function as neater in template
-    public function cover(string $relativeResourcePath, int $width, int $height, int $fallbackWidth, int $fallbackHeight): array
+    public function cover(string $relativeResourcePath, int $width, int $height): array
     {
         $filesystem = new Filesystem();
         $absoluteResourcePath = Path::join(
@@ -22,8 +23,8 @@ readonly class SkyscraperResourceImageSizingHelper
         );
 
         $fallback = [
-            'w' => $fallbackWidth,
-            'h' => $fallbackHeight,
+            'w' => $width,
+            'h' => $height,
         ];
 
         if (!$filesystem->exists($absoluteResourcePath)) {
@@ -41,7 +42,7 @@ readonly class SkyscraperResourceImageSizingHelper
         return $sizing->cover($width, $height);
     }
 
-    public function fit(string $relativeResourcePath, int $width, int $height, int $fallbackWidth, int $fallbackHeight): array
+    public function fit(string $relativeResourcePath, int $width, int $height): array
     {
         $filesystem = new Filesystem();
         $absoluteResourcePath = Path::join(
@@ -51,21 +52,20 @@ readonly class SkyscraperResourceImageSizingHelper
         );
 
         $fallback = [
-            'w' => $fallbackWidth,
-            'h' => $fallbackHeight,
+            'w' => $width,
+            'h' => $height,
         ];
 
         if (!$filesystem->exists($absoluteResourcePath)) {
             return $fallback;
         }
 
-        $size = getimagesize($absoluteResourcePath);
+        $image = ImageManager::imagick()->read($absoluteResourcePath);
+        $i = $image->core()->native();
+        $i->trimImage(10);
+        $i->setImagePage(0, 0, 0, 0);
 
-        if (!$size) {
-            return $fallback;
-        }
-
-        $sizing = new ImageSizing($size[0], $size[1]);
+        $sizing = new ImageSizing($image->width(), $image->height());
 
         return $sizing->fit($width, $height);
     }

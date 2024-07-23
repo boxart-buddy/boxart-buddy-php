@@ -11,8 +11,8 @@
         </layer>
 
         <layer resource="{{ platformLogoPath }}"
-               width="{{resourcehelper.fit(platformLogoPath, 46, 28, 46, 28 )['w'] }}"
-               height="{{resourcehelper.fit(platformLogoPath, 46, 28, 46, 28 )['h'] }}"
+               width="{{resourcehelper.fit(platformLogoPath, 46, 28)['w'] }}"
+               height="{{resourcehelper.fit(platformLogoPath, 46, 28)['h'] }}"
                align="center" valign="middle" x="-260">
         </layer>
 

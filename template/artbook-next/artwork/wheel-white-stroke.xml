@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <artwork>
+
+    {% set fit = assetSize('wheel').fit(240, 240) %}
+
     <output type="cover" width="640" height="480">
 
-        <layer resource="wheel" width="{{ rom|trans({}, 'wheel-width-constrain-height', locale)|default('240') }}"
+        <layer resource="wheel" width="{{ fit['w'] }}" height="{{ fit['h'] }}"
                align="center"
                valign="middle">
             <stroke width="2" color="{{ rom|trans({}, 'logo-stroke-black', locale)|default('#FFFFFF') }}"/>

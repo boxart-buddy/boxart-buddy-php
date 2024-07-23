@@ -5,16 +5,32 @@ namespace App\Skyscraper;
 use App\Config\Reader\ConfigReader;
 use App\Util\ImageSizing;
 use App\Util\Path;
+use Intervention\Image\ImageManager;
 use Symfony\Component\Filesystem\Filesystem;
 
-readonly class CacheReader
+class CacheReader
 {
+    private array $xmlCache;
+
     public function __construct(
-        private ConfigReader $configReader
+        readonly private ConfigReader $configReader
     ) {
+        $this->xmlCache = [];
     }
 
-    private function getImageSizeForRom(string $absoluteRomPath, string $platform, string $resource): array
+    private function getXml(string $path): ?\SimpleXMLElement
+    {
+        $cacheKey = sprintf('%s-%s', basename(dirname($path)), Path::removeExtension(basename($path)));
+        if (array_key_exists($cacheKey, $this->xmlCache)) {
+            return $this->xmlCache[$cacheKey];
+        }
+
+        $this->xmlCache[$cacheKey] = simplexml_load_file($path);
+
+        return $this->xmlCache[$cacheKey];
+    }
+
+    public function getImageSizingHelperForRom(string $absoluteRomPath, string $platform, string $resource): ?ImageSizing
     {
         $filesystem = new Filesystem();
 
@@ -23,12 +39,12 @@ readonly class CacheReader
         $dbPath = Path::join($cachePath, $platform, 'db.xml');
 
         if (!$filesystem->exists($dbPath) || !$filesystem->exists($quickIdPath)) {
-            return [];
+            return null;
         }
 
-        $xml = simplexml_load_file($quickIdPath);
+        $xml = $this->getXml($quickIdPath);
         if (!$xml) {
-            return [];
+            return null;
         }
 
         $results = $xml->xpath(
@@ -36,14 +52,14 @@ readonly class CacheReader
         );
 
         if (!$results) {
-            return [];
+            return null;
         }
 
         $id = (string) $results[0]['id'];
 
-        $xml = simplexml_load_file($dbPath);
+        $xml = $this->getXml($dbPath);
         if (!$xml) {
-            return [];
+            return null;
         }
 
         $results = $xml->xpath(
@@ -51,26 +67,21 @@ readonly class CacheReader
         );
 
         if (!$results) {
-            return [];
+            return null;
         }
 
         $imageFilePath = (string) $results[0];
         $fullImageFilePath = Path::join($cachePath, $platform, $imageFilePath);
 
         if (!$filesystem->exists($fullImageFilePath)) {
-            return [];
-        }
-
-        return getimagesize($fullImageFilePath) ?: [];
-    }
-
-    public function getImageSizingHelperForRom(string $absoluteRomPath, string $platform, string $resource = 'screenshot'): ?ImageSizing
-    {
-        $size = $this->getImageSizeForRom($absoluteRomPath, $platform, $resource);
-        if (empty($size) || !isset($size[0]) || !isset($size[1])) {
             return null;
         }
 
-        return new ImageSizing($size[0], $size[1]);
+        $image = ImageManager::imagick()->read($fullImageFilePath);
+        $i = $image->core()->native();
+        $i->trimImage(10);
+        $i->setImagePage(0, 0, 0, 0);
+
+        return new ImageSizing($image->width(), $image->height());
     }
 }

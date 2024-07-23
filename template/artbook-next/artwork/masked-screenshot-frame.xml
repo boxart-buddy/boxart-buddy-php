@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <artwork>
+
+    {% set cover = assetSize('screenshot').cover(196,480) %}
+
     <output type="cover" width="640" height="480">
 
         <layer resource="screenshot"
-               height="{{ (480 * ((rom|trans({}, 'screenshot-y-multiply', locale))|default(1)) * ((locale|trans({}, 'screenshot-y-multiply', locale))|default(1))) | round }}"
+               height="{{ cover['h'] }}"
+               width="{{ cover['w'] }}"
                align="center"
                valign="middle"
                y="{{ ((rom|trans({}, 'screenshot-offset-y', locale))|default('0')* 1) + ((locale|trans({}, 'screenshot-offset-y', locale))|default('0')* 1) }}"
@@ -12,7 +16,7 @@
 
         <mask file="mask/full-flat.png" width="640" height="480"/>
 
-        <layer width="200" height="480" align="left" valign="top" x="220" y="0">
+        <layer width="194" height="480" align="left" valign="top" x="226" y="0">
             <layer resource="frame.png"></layer>
         </layer>
     </output>

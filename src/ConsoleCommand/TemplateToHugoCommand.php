@@ -45,6 +45,7 @@ class TemplateToHugoCommand extends Command
 
         $this->hugoResourceCreator->copyTemplatePreviewsToStatic($path);
         $this->hugoResourceCreator->createHugoDataFixtureForTemplates($path);
+        $this->hugoResourceCreator->createHugoDataFixtureForVariants($path);
         $this->hugoResourceCreator->createHugoDataFixtureForThemes($path);
 
         $io->complete('Complete');

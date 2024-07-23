@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <artwork>
+
+    {% set platformLogoPath = "system-logos/dark-white/" ~ ('logo'|trans({}, 'logo', locale)) %}
+    {% set fit = resourcehelper.fit(platformLogoPath, 320, 170) %}
+
     <output type="cover" width="640" height="480">
 
-        <layer resource="system-logos/{{ 'logo-type'|trans({}, 'general', locale)|default('dark-white') }}/{{ 'logo'|trans({}, 'logo', locale) }}"
-               width="320" align="center" valign="middle">
+        <layer resource="{{ platformLogoPath }}"
+               width="{{ fit['w'] }}"
+               height="{{ fit['h'] }}"
+               align="center" valign="middle">
             <stroke width="{{ platform|trans({}, 'system-stroke-width', platform)|default('0') }}"
                     color="{{ platform|trans({}, 'system-stroke-color', platform)|default('#000000') }}"/>
             <shadow distance="8" softness="5" opacity="50"/>

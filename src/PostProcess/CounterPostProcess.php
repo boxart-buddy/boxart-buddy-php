@@ -12,7 +12,6 @@ use Intervention\Image\Colors\Rgb\Color;
 use Intervention\Image\Geometry\Factories\CircleFactory;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Interfaces\ImageInterface;
-use Intervention\Image\Typography\FontFactory;
 use Psr\Log\LoggerInterface;
 
 class CounterPostProcess implements PostProcessInterface
@@ -20,9 +19,11 @@ class CounterPostProcess implements PostProcessInterface
     use ArtworkTrait;
     use SaveImageTrait;
     use ProcessOptionsTrait;
-    use FontMetricsTrait;
+    use FontTrait;
 
     public const NAME = 'counter';
+    protected array $fontMetricCache = [];
+    protected array $fontCache = [];
 
     public function __construct(
         readonly private LoggerInterface $logger,
@@ -175,13 +176,7 @@ class CounterPostProcess implements PostProcessInterface
             sprintf('%s / %s', $current, $total),
             $x,
             $y,
-            function (FontFactory $font) use ($fontPath, $color, $align, $valign, $fontSize) {
-                $font->filename($fontPath);
-                $font->size($fontSize);
-                $font->color($color);
-                $font->align($align);
-                $font->valign($valign);
-            }
+            $this->getFont($fontPath, $fontSize, $color, $align, $valign)
         );
 
         // trim the counter and place it back on the background to make sure it is centre aligned
@@ -288,26 +283,14 @@ class CounterPostProcess implements PostProcessInterface
             (string) $current,
             90,
             $currentY,
-            function (FontFactory $font) use ($fontPath, $color, $fontSize) {
-                $font->filename($fontPath);
-                $font->size($fontSize);
-                $font->color($color);
-                $font->align('right');
-                $font->valign('center');
-            }
+            $this->getFont($fontPath, $fontSize, $color, 'right', 'center')
         );
 
         $counter->text(
             (string) $total,
             90,
             $totalY,
-            function (FontFactory $font) use ($fontPath, $color, $fontSize) {
-                $font->filename($fontPath);
-                $font->size($fontSize);
-                $font->color($color);
-                $font->align('left');
-                $font->valign('center');
-            }
+            $this->getFont($fontPath, $fontSize, $color, 'left', 'center')
         );
 
         $circleRadius = match (strlen((string) $total)) {

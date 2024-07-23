@@ -8,6 +8,7 @@ use App\FolderNames;
 use App\Util\Path;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Yaml\Yaml;
 
 readonly class HugoResourceCreator
 {
@@ -47,14 +48,14 @@ readonly class HugoResourceCreator
         $filesystem->dumpFile($out, json_encode($themes, JSON_PRETTY_PRINT) ?: '{}');
     }
 
-    public function createHugoDataFixtureForTemplates(string $path): void
+    public function createHugoDataFixtureForVariants(string $path): void
     {
         $filesystem = new Filesystem();
         $finder = new Finder();
         $finder->in($this->path->joinWithBase(FolderNames::TEMPLATE->value, '*'));
         $finder->files()->name('make.yml');
 
-        $out = Path::join($path, 'docs-data', 'templates.json');
+        $out = Path::join($path, 'docs-data', 'variants.json');
 
         $entries = [];
 
@@ -62,18 +63,38 @@ readonly class HugoResourceCreator
             $templateName = basename($file->getPath());
             $make = $this->templateMakeFileProcessor->process($templateName);
             foreach ($make as $variantName => $variantData) {
-                $entries[] = $this->createHugoTemplateDataFixtureEntry($templateName, $variantName, $variantData);
+                $entries[$templateName][] = $this->createHugoVariantDataFixtureEntry($templateName, $variantName, $variantData);
             }
         }
 
         $filesystem->dumpFile($out, json_encode($entries, JSON_PRETTY_PRINT) ?: '{}');
     }
 
-    private function createHugoTemplateDataFixtureEntry(
+    public function createHugoDataFixtureForTemplates(string $path): void
+    {
+        $filesystem = new Filesystem();
+        $finder = new Finder();
+        $finder->in($this->path->joinWithBase(FolderNames::TEMPLATE->value, '*'));
+        $finder->files()->name('info.yml');
+
+        $out = Path::join($path, 'docs-data', 'templates.json');
+
+        $entries = [];
+
+        foreach ($finder as $file) {
+            $templateName = basename($file->getPath());
+            $info = Yaml::parseFile($file->getRealPath());
+            $entries[] = new HugoTemplateDataFixtureEntry($templateName, $info['description']);
+        }
+
+        $filesystem->dumpFile($out, json_encode($entries, JSON_PRETTY_PRINT) ?: '{}');
+    }
+
+    private function createHugoVariantDataFixtureEntry(
         string $templateName,
         string $variantName,
         array $variant
-    ): HugoTemplateDataFixtureEntry {
+    ): HugoVariantDataFixtureEntry {
         $previewName = $variant['package_name'].'.webp';
         $previewPath = sprintf('/docs/template/preview/%s', $previewName);
         $themePreviewPaths = [];
@@ -88,7 +109,7 @@ readonly class HugoResourceCreator
             }
         }
 
-        return new HugoTemplateDataFixtureEntry(
+        return new HugoVariantDataFixtureEntry(
             $templateName,
             $variantName,
             $variant['notes'],
@@ -96,7 +117,7 @@ readonly class HugoResourceCreator
             $themePreviewPaths,
             $variant['metadata']['type'],
             $variant['metadata']['interface'],
-            true,
+            isset($variant['artwork']['file']) && 'null.xml' !== $variant['artwork']['file'],
             isset($variant['folder']['file']) && 'null.xml' !== $variant['folder']['file'],
         );
     }

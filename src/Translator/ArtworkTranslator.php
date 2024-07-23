@@ -2,6 +2,8 @@
 
 namespace App\Translator;
 
+use App\ApplicationConstant;
+use App\Command\CommandNamespace;
 use App\Model\Artwork;
 use App\Skyscraper\CacheReader;
 use App\Translator\Fuzzy\FuzzyMatchingTranslator;
@@ -13,6 +15,7 @@ use Symfony\Component\Translation\Loader\ArrayLoader;
 use Symfony\Component\Yaml\Yaml;
 use Twig\Environment as TwigEnvironment;
 use Twig\Loader\ArrayLoader as TwigArrayLoader;
+use Twig\TwigFunction;
 
 class ArtworkTranslator
 {
@@ -95,7 +98,7 @@ class ArtworkTranslator
         $this->runtimeTokenMemoization[$hash] = true;
     }
 
-    public function translateArtwork(Artwork $artwork, string $locale, string $romAbsolutePath): string
+    public function translateArtwork(Artwork $artwork, string $locale, string $romAbsolutePath, CommandNamespace $namespace): string
     {
         $romName = Path::removeExtension(basename($romAbsolutePath));
 
@@ -108,13 +111,22 @@ class ArtworkTranslator
         );
         $twig->addExtension(new EmptyTranslatingTwigExtension($this->translator));
 
+        $twig->addFunction(new TwigFunction('assetSize', function (string $resource) use ($romAbsolutePath, $locale) {
+            return $this->cacheReader->getImageSizingHelperForRom($romAbsolutePath, $locale, $resource);
+        }));
+
+        // hack needed in case generating a portmaster alternative
+        if ('sh' === pathinfo($romAbsolutePath, PATHINFO_EXTENSION)) {
+            $locale = ApplicationConstant::FAKE_PORTMASTER_PLATFORM;
+        }
+
         $vars = ['locale' => $locale, 'platform' => $locale];
         if ($romName) {
             $vars['rom'] = $romName;
         }
 
-        $vars['helper'] = $this->cacheReader->getImageSizingHelperForRom($romAbsolutePath, $locale, 'screenshot');
         $vars['resourcehelper'] = $this->skyscraperResourceImageSizingHelper;
+        $vars['namespace'] = $namespace->value;
 
         return $twig->render(
             'template',

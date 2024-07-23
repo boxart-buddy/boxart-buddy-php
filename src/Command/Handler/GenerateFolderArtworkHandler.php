@@ -4,6 +4,7 @@ namespace App\Command\Handler;
 
 use App\Command\CommandInterface;
 use App\Command\GenerateFolderArtworkCommand;
+use App\Config\Reader\ConfigReader;
 use App\Generator\ArtworkGenerator;
 use App\Provider\ArtworkProvider;
 use App\Provider\FolderRomProvider;
@@ -17,7 +18,8 @@ readonly class GenerateFolderArtworkHandler implements CommandHandlerInterface
         private ArtworkProvider $artworkProvider,
         private PathProvider $pathProvider,
         private FolderRomProvider $folderRomProvider,
-        private PlatformProvider $platformProvider
+        private PlatformProvider $platformProvider,
+        private ConfigReader $configReader
     ) {
     }
 
@@ -26,10 +28,6 @@ readonly class GenerateFolderArtworkHandler implements CommandHandlerInterface
         if (!$command instanceof GenerateFolderArtworkCommand) {
             throw new \InvalidArgumentException();
         }
-
-        // @todo does there need to be a way of generating artwork without artwork.xml?
-        // What about folders without any roms in them
-        // Should this allow null to skip artwork generation? (Not every template is sibling rememember)
 
         $artwork = $this->artworkProvider->getArtwork($command->artworkPackage, $command->artwork);
 
@@ -40,6 +38,7 @@ readonly class GenerateFolderArtworkHandler implements CommandHandlerInterface
         if (!$romAbsolutePath) {
             return;
         }
+
         $this->artworkGenerator->generateFolderArtwork(
             $artwork,
             $platform,

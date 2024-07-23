@@ -24,9 +24,12 @@ class TextPostProcess implements PostProcessInterface
     use ArtworkTrait;
     use SaveImageTrait;
     use ProcessOptionsTrait;
-    use FontMetricsTrait;
+    use FontTrait;
 
     public const NAME = 'text';
+
+    protected array $fontMetricCache = [];
+    protected array $fontCache = [];
 
     public function __construct(
         readonly private Path $path,
@@ -178,15 +181,8 @@ class TextPostProcess implements PostProcessInterface
         $textToAdd = $truncated;
 
         $text = $manager->create($canvasX, $canvasY);
-        $text->text($textToAdd, $x, $canvasY / 2, function (FontFactory $font) use ($fontPath, $textColor, $textHAlign, $canvasX, $fontSize) {
-            $font->filename($fontPath);
-            $font->size($fontSize);
-            $font->color($textColor);
-            $font->align($textHAlign);
-            $font->valign('middle');
-            $font->lineHeight(1.9);
-            $font->wrap($canvasX);
-        });
+        $font = $this->getFont($fontPath, $fontSize, $textColor, $textHAlign, 'middle', $canvasX);
+        $text->text($textToAdd, $x, $canvasY / 2, $font);
 
         $textNative = $text->core()->native();
         $textNative->trimImage(10);

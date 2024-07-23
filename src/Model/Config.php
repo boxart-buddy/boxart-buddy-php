@@ -103,10 +103,10 @@ readonly class Config
         return $this->folders[$folder];
     }
 
-    public function getSingleRomForFolder(string $folder): ?string
+    public function getSingleRomForPlatform(string $platform): ?string
     {
-        if (isset($this->folderRoms[$folder])) {
-            return $this->folderRoms[$folder];
+        if (isset($this->folderRoms[$platform])) {
+            return $this->folderRoms[$platform];
         }
 
         return null;
