@@ -53,3 +53,20 @@ osx-mountain-lion:
       offset_generated_y: 20
     - strategy: background
       background: 'finder-bg.png'
+
+retrowave:
+  metadata:
+    type: standalone
+    interface: 'full+front'
+  description: 'Generates specific boxart for Retrowave Theme'
+  package_name: retrowave
+  artwork:
+    file: retrowave-screenshot.xml
+  post_process:
+    - strategy: background
+      overlay: 'rw-frame.png'
+    - strategy: background
+      overlay: 'rw-wheel-bg.png'
+    - strategy: artwork_generation
+      artwork_file: 'retrowave-wheel.xml'
+      layer: top

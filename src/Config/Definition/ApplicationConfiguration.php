@@ -114,6 +114,7 @@ class ApplicationConfiguration implements ConfigurationInterface
                 ->arrayNode('package')
                     ->isRequired()
                     ->requiresAtLeastOneElement()
+                    ->normalizeKeys(false)
                     ->scalarPrototype()
                         ->validate()
                         ->ifEmpty()

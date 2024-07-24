@@ -16,7 +16,7 @@
 
         <mask file="mask/full-flat.png" width="640" height="480"/>
 
-        <layer width="194" height="480" align="left" valign="top" x="226" y="0">
+        <layer width="194" height="480" align="center" valign="middle">
             <layer resource="frame.png"></layer>
         </layer>
     </output>

@@ -34,7 +34,7 @@ class BackgroundImagePostProcess implements PostProcessInterface
         $this->setupSaveBehaviour(false);
 
         $includeFiles = $command->files;
-        $includeFolders = $command->files;
+        $includeFolders = $command->folders;
 
         if (isset($command->options[BackgroundImagePostProcessOptions::EXCLUDE]) && 'artwork' === $command->options[BackgroundImagePostProcessOptions::EXCLUDE]) {
             $includeFiles = false;

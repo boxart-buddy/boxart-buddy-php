@@ -240,7 +240,7 @@ class TextPostProcess implements PostProcessInterface
             });
 
             // right
-            $bgCanvas->drawRectangle($bgWidth + $bgPaddingX, 0, function (RectangleFactory $rectangle) use ($canvasY, $bgPaddingX, $textBgColor) {
+            $bgCanvas->drawRectangle($bgWidth, 0, function (RectangleFactory $rectangle) use ($canvasY, $bgPaddingX, $textBgColor) {
                 $rectangle->size($bgPaddingX, $canvasY);
                 $rectangle->background($textBgColor);
             });

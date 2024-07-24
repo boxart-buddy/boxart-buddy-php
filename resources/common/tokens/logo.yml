@@ -19,7 +19,7 @@
 'arcadia':
   logo: 'Consoles/Emerson Arcadia 2001.png'
 'arduboy':
-  logo: ~
+  logo: 'Handhelds/Arduboy.png'
 'astrocade':
   logo: 'Consoles/Bally Astrocade.png'
 'atari2600':
@@ -141,7 +141,7 @@
 'oric':
   logo: 'Computers/Oric Atmos.png'
 'palm':
-  logo: ~
+  logo: 'Handhelds/Palm.png'
 'pc':
   logo: 'Computers/Windows.png'
 'pc88':

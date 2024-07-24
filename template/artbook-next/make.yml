@@ -2,7 +2,7 @@ artbook-next-alt:
   metadata:
     type: sibling
     interface: 'full+front'
-  description: "dimmed siblings, white system logos, game logos w/ black outline"
+  description: "Screenshots used for backgrounds. Folders w/ platform logo, roms w/ game logo."
   package_name: 'artbook-next-alt'
   artwork:
     file: 'masked-screenshot-frame.xml'
@@ -16,10 +16,53 @@ artbook-next-alt:
       sibling-count: 3
       loop: true
     - strategy: background
-      overlay: overlay.png
+      overlay: folder-overlay.png
     - strategy: artwork_generation
       artwork_file: 'wheel-white-stroke.xml'
       folder_file: 'system-logo.xml'
+
+artbook-next-folder-static:
+  metadata:
+    type: sibling
+    interface: 'full+front'
+  description: "Uses static artwork to generate folder art, offset for scrolling effect"
+  package_name: 'artbook-next-folder-static'
+  artwork:
+    file: null
+  folder:
+    file: 'folder-static.xml'
+  post_process:
+    - strategy: offset_with_siblings
+      offset_x: 146
+      sibling-count: 3
+      loop: true
+    - strategy: background
+      overlay: folder-overlay.png
+    - strategy: artwork_generation
+      folder_file: 'system-logo.xml'
+
+artbook-next-folder-static-alt:
+  metadata:
+    type: sibling
+    interface: 'full+front'
+  description: "Uses static artwork to generate folder art, offset for scrolling effect(alternate images)"
+  package_name: 'artbook-next-folder-static-alt'
+  artwork:
+    file: null
+    token:
+      v: 2
+  folder:
+    file: 'folder-static.xml'
+  post_process:
+    - strategy: offset_with_siblings
+      offset_x: 146
+      sibling-count: 3
+      loop: true
+    - strategy: background
+      overlay: folder-overlay.png
+    - strategy: artwork_generation
+      folder_file: 'system-logo.xml'
+
 
 artbook-next-game-list:
   metadata:
@@ -39,24 +82,23 @@ artbook-next-game-list:
   post_process:
     - strategy: text
       font_family: roboto
-      font_variant: bold
+      font_variant: medium
       color: '7d7f7c'
       text_bg_opacity: 0
       size: xxs
       position: left
-      #      text_x: 0
-      #      text_bg_width_forced: 596
-      #      text_bg_height_forced: 52
       text_truncate_neg_width: 340
-      text_bg_height_forced: 32
-      text_y: -16
+      text_bg_height_forced: 28
+      text_bg_width_forced: 248
+      text_y: -14
+      text_x: 6
     - strategy: offset_with_siblings
-      offset_y: 36
-      sibling-count: 6
+      offset_y: 32
+      sibling-count: 8
       loop: true
     - strategy: text
       font_family: roboto
-      font_variant: bold
+      font_variant: medium
       color: 'FFFFFF'
       text_bg_opacity: 100
       background_color: 000000
@@ -64,8 +106,10 @@ artbook-next-game-list:
       size: xxs
       position: left
       text_truncate_neg_width: 340
-      text_bg_height_forced: 32
-      text_y: -16
+      text_bg_height_forced: 28
+      text_bg_width_forced: 248
+      text_y: -14
+      text_x: 6
     - strategy: background
       overlay: 'game-list-left-platform-bg.png'
     - strategy: artwork_generation
@@ -74,7 +118,5 @@ artbook-next-game-list:
       folder_file: 'game-list-with-platform.xml'
       folder_package: 'artbook-next'
       layer: top
-      offset_original_x: -20
     - strategy: background
       background: 'game-list-left-background.png'
-      # change to default

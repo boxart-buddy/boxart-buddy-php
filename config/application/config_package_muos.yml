@@ -14,17 +14,17 @@
 'atari5200': 'Atari 5200'
 'atari7800': 'Atari 7800'
 'atari800': ~
-'atarijaguar': ' Atari Jaguar'
+'atarijaguar': 'Atari Jaguar'
 'atarijaguarcd': ~
 'atarilynx': 'Atari Lynx'
 'atarist': 'Atari ST-STE-TT-Falcon'
-'atomiswave': ~
+'atomiswave': 'Sega Atomiswave Naomi'
 'c128': 'Commodore C128'
 'c64': 'Commodore C64'
 'cd32': ~
 'cdi': 'Philips CDi'
 'cdtv': ~
-'channelf': ~
+'channelf': 'Fairchild ChannelF'
 'coco': ~
 'coleco': 'ColecoVision'
 'crvision': ~
@@ -43,7 +43,7 @@
 'gbc': 'Nintendo Game Boy Color'
 'gc': ~
 'gmaster': ~
-'intellivision': ~
+'intellivision': 'Mattel - Intellivision'
 'j2me': ~
 'love': ~
 'macintosh': ~
@@ -59,8 +59,8 @@
 'msx2': ~
 'n64': 'Nintendo N64'
 'n64dd': 'Nintendo N64'
-'naomi': ~
-'naomi2': ~
+'naomi': 'Sega Atomiswave Naomi'
+'naomi2': 'Sega Atomiswave Naomi'
 'nds': 'Nintendo DS'
 'neogeo': 'SNK Neo Geo'
 'neogeocd': 'SNK Neo Geo CD'

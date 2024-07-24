@@ -60,7 +60,12 @@ readonly class PathProvider
 
     public function getPortmasterRomPath(): string
     {
-        return $this->path->joinWithBase(FolderNames::TEMP->value, 'portmaster', 'roms/');
+        return $this->path->joinWithBase(FolderNames::TEMP->value, 'portmaster', 'roms');
+    }
+
+    public function getFakeRomPath(): string
+    {
+        return $this->path->joinWithBase(FolderNames::TEMP->value, 'fake_roms', 'roms');
     }
 
     public function getPackageRootPath(string $packageName): string

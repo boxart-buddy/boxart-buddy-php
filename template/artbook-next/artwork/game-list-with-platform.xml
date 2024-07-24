@@ -35,7 +35,7 @@
                height="{{ platformLogo['h'] }}"
                align="center" valign="middle"
                x="-180"
-               y="-170"
+               y="-160"
         >
             <opacity value="70"/>
         </layer>

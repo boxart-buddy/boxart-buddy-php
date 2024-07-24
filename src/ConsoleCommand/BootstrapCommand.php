@@ -7,6 +7,7 @@ use App\Config\Processor\ApplicationConfigurationProcessor;
 use App\Config\Reader\ConfigReader;
 use App\FolderNames;
 use App\Generator\ConfigFolderGenerator;
+use App\Importer\FakeRomImporter;
 use App\Lock\LockIO;
 use App\Portmaster\PortmasterDataImporter;
 use App\Util\Console\BlockSectionHelper;
@@ -18,7 +19,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Filesystem\Filesystem;
 
 #[AsCommand(
@@ -30,6 +30,7 @@ class BootstrapCommand extends Command
     public function __construct(
         readonly private Path $path,
         readonly private PortmasterDataImporter $portmasterDataImporter,
+        readonly private FakeRomImporter $fakeRomImporter,
         readonly private LoggerInterface $logger,
         readonly private ConfigFolderGenerator $configFolderGenerator,
         readonly private ConfigReader $configReader,
@@ -122,14 +123,20 @@ class BootstrapCommand extends Command
             return Command::SUCCESS;
         }
 
-        // Ask for RomFolder if it doesnt exist
         $configuredRomFolder = $this->configIO->read(ApplicationConfigurationProcessor::CONFIG_FILENAME, 'rom_folder');
         if (!$configuredRomFolder) {
-            $romFolder = $this->getRomFolder($input, $output);
-            $this->configIO->write(ApplicationConfigurationProcessor::CONFIG_FILENAME, 'rom_folder', $romFolder);
+            $io->failure('Value of `rom_folder` in `user_config/config.yml` is missing and must be entered before proceeding');
+
+            return Command::FAILURE;
         }
 
         $filesystem = new Filesystem();
+
+        if (!$filesystem->exists($configuredRomFolder)) {
+            $io->failure('Value of `rom_folder`: `%s` is an invalid path, the path must exist and be a folder that contains folders of roms', $configuredRomFolder);
+
+            return Command::FAILURE;
+        }
 
         $configFolderPath = $this->path->joinWithBase(FolderNames::USER_CONFIG->value, ApplicationConfigurationProcessor::CONFIG_FOLDER_FILENAME);
         if (!$filesystem->exists($configFolderPath)) {
@@ -149,34 +156,17 @@ class BootstrapCommand extends Command
 
         $io->section('portmaster')->wait('Importing Portmaster data');
         $this->portmasterDataImporter->importPortmasterDataIfNotImportedSince(new \DateInterval('PT5M'));
-
         $io->done('Importing Portmaster data', true);
+
+        $io->section('dummy-roms')->wait('Importing dummy roms');
+        $this->fakeRomImporter->import();
+        $io->done('Imported dummy roms', true);
 
         $io->section('end')->complete(
             'Bootstrap complete. Edit config.yml to set credentials and preferences'
         );
 
         return Command::SUCCESS;
-    }
-
-    private function getRomFolder(InputInterface $input, OutputInterface $output): string
-    {
-        $helper = $this->getHelper('question');
-
-        $question = new Question('Enter the absolute path of your rom folder (e.g `~/Roms`)', '');
-
-        $question->setValidator(function (string $answer): string {
-            $filesystem = new Filesystem();
-            if (!$filesystem->exists($answer)) {
-                throw new \RuntimeException(sprintf('Rom folder "%s" does not exist, please use a valid folder', $answer));
-            }
-
-            return $answer;
-        });
-
-        $question->setMaxAttempts(3);
-
-        return $helper->ask($input, $output, $question); // @phpstan-ignore method.notFound
     }
 
     private function createNewFileFromDist(string $filename, string $distFilename, bool $overwrite): void
