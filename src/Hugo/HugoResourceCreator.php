@@ -113,6 +113,7 @@ readonly class HugoResourceCreator
             $templateName,
             $variantName,
             $variant['notes'],
+            $variant['download_link'],
             $previewPath,
             $themePreviewPaths,
             $variant['metadata']['type'],

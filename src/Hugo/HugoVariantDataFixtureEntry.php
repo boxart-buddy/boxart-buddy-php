@@ -8,6 +8,7 @@ readonly class HugoVariantDataFixtureEntry implements \JsonSerializable
         private string $templateName,
         private string $variantName,
         private string $notes,
+        private ?string $downloadLink,
         private string $previewPath,
         private array $themePreviewPaths,
         private string $type,

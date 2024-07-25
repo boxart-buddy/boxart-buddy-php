@@ -192,6 +192,11 @@ readonly class CommandFactory
     ): array {
         $commands = [];
 
+        // skip hidden folders
+        if (in_array(basename($folder), RomExtensionProvider::getDirectoryExcludes())) {
+            return $commands;
+        }
+
         $platform = $this->platformProvider->getPlatformOrNull($folder);
 
         if (null === $platform) {

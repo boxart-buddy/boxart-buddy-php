@@ -5,6 +5,7 @@ namespace App\Generator;
 use App\Config\Processor\ApplicationConfigurationProcessor;
 use App\Config\Reader\ConfigReader;
 use App\FolderNames;
+use App\Skyscraper\RomExtensionProvider;
 use App\Util\File;
 use App\Util\Finder;
 use App\Util\Path;
@@ -29,6 +30,9 @@ class ConfigFolderGenerator
 
         $finder = new Finder();
         $finder->in($romFolder)->directories();
+
+        $finder->notPath(RomExtensionProvider::getDirectoryExcludes());
+
         // sort by depth
         $finder->sort(static function (\SplFileInfo $a, \SplFileInfo $b) {
             $depth = substr_count($a->getRealPath(), '/') - substr_count($b->getRealPath(), '/');

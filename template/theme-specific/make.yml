@@ -3,6 +3,7 @@ osx-mountain-lion:
     type: sibling
     interface: 'full+front'
   description: 'Generates specific boxart for OSX Mountain Lion Theme'
+  notes: For use with the OSX Mountain Lion Theme <a href="https://discord.com/channels/1152022492001603615/1248218290195796018"> Discord Link </a>
   package_name: osx-mountain-lion
   artwork:
     file: osx-tiny-screenshot.xml
@@ -59,6 +60,8 @@ retrowave:
     type: standalone
     interface: 'full+front'
   description: 'Generates specific boxart for Retrowave Theme'
+  download_link: 'https://onedrive.live.com/download?resid=60C7045B43315384%21347&authkey=!AL_UkF3npG42RR0'
+  notes: For use with the Retrowave Theme <a href="https://discord.com/channels/1152022492001603615/1248730050661191790"> Discord Link </a>
   package_name: retrowave
   artwork:
     file: retrowave-screenshot.xml

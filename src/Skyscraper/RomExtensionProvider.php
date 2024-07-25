@@ -64,4 +64,12 @@ class RomExtensionProvider
 
         return json_decode($filesystem->readFile($peasPath), true);
     }
+
+    public static function getDirectoryExcludes(): array
+    {
+        return [
+            '_hidden',
+            '.hidden',
+        ];
+    }
 }

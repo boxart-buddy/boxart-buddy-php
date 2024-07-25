@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <artwork>
 
-    {% set wheel = assetSize('wheel').fit(270,70) %}
+    {% set wheel = assetSize('wheel').fit(270,90) %}
 
     <output type="cover" width="640" height="480">
 
@@ -10,7 +10,7 @@
                height="{{ wheel['h'] }}"
                align="center" valign="middle"
                x="160"
-               y="132">
+               y="135">
             <stroke width="2" color="#FA73FF"/>
             <!-- shadow is not pink so maybe look to do it in post processing -->
             <!--            <shadow distance="5" softness="0" opacity="100"/>-->
