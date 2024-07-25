@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artwork>
+    <output type="cover" width="640" height="480">
+        <layer width="640" height="480" align="center" valign="middle"
+               resource="folders-pop/{{ platform }}-pop.png">
+        </layer>
+    </output>
+</artwork>

@@ -46,7 +46,6 @@ class BackgroundImagePostProcess implements PostProcessInterface
 
         $options = $this->processOptions($command->options, BackgroundImagePostProcessOptions::class);
         $images = $this->packagedImagePathProvider->getPackagedImagePathsBySourceFolder($command->source, $command->package, $includeFiles, $includeFolders);
-
         $this->processWorkset($images, $options);
         $this->mirrorTemporaryFolderIfRequired($images);
     }
@@ -74,6 +73,9 @@ class BackgroundImagePostProcess implements PostProcessInterface
                 );
 
                 if (!$filesystem->exists($bg)) {
+                    if ($options[BackgroundImagePostProcessOptions::SUPPRESS_MISSING]) {
+                        continue;
+                    }
                     throw new \InvalidArgumentException(sprintf('Background image "%s" does not exist', $bg));
                 }
 
@@ -94,6 +96,9 @@ class BackgroundImagePostProcess implements PostProcessInterface
                 );
 
                 if (!$filesystem->exists($bg)) {
+                    if ($options[BackgroundImagePostProcessOptions::SUPPRESS_MISSING]) {
+                        continue;
+                    }
                     throw new \InvalidArgumentException(sprintf('Background image "%s" does not exist', $bg));
                 }
 
@@ -114,6 +119,9 @@ class BackgroundImagePostProcess implements PostProcessInterface
                 );
 
                 if (!$filesystem->exists($overlay)) {
+                    if ($options[BackgroundImagePostProcessOptions::SUPPRESS_MISSING]) {
+                        continue;
+                    }
                     throw new \InvalidArgumentException(sprintf('Overlay image "%s" does not exist', $overlay));
                 }
 

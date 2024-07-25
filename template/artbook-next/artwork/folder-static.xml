@@ -3,7 +3,7 @@
 
     <output type="cover" width="640" height="480">
         <layer width="194" height="480" align="center" valign="middle"
-               resource="folders/{{ platform }}-{{ 'v'|trans({}, 'general', locale)|default('1') }}.png">
+               resource="folders-{{ 'v'|trans({}, 'general', locale)|default('1') }}/{{ platform }}.png">
         </layer>
     </output>
 

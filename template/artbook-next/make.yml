@@ -63,6 +63,28 @@ artbook-next-folder-static-alt:
     - strategy: artwork_generation
       folder_file: 'system-logo.xml'
 
+artbook-next-folder-static-pop:
+  metadata:
+    type: sibling
+    interface: 'full+front'
+  description: "Uses static artwork to generate folder art, some images will pop out"
+  package_name: 'artbook-next-folder-static-pop'
+  artwork:
+    file: null
+  folder:
+    file: 'folder-static.xml'
+  post_process:
+    - strategy: offset_with_siblings
+      offset_x: 146
+      sibling-count: 3
+      loop: true
+    - strategy: background
+      overlay: folder-overlay.png
+    - strategy: artwork_generation
+      folder_file: 'folder-static-pop.xml'
+      layer: top
+    - strategy: artwork_generation
+      folder_file: 'system-logo.xml'
 
 artbook-next-game-list:
   metadata:

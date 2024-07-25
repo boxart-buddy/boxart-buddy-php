@@ -15,6 +15,7 @@ class BackgroundImagePostProcessOptions implements ConfigurationInterface
     public const OVERLAY = 'overlay';
     public const OFFSET_ORIGINAL_X = 'offset_original_x';
     public const OFFSET_ORIGINAL_Y = 'offset_original_y';
+    public const SUPPRESS_MISSING = 'suppress_error_if_missing';
     public const EXCLUDE = 'exclude';
 
     public function getConfigTreeBuilder(): TreeBuilder
@@ -52,7 +53,12 @@ class BackgroundImagePostProcessOptions implements ConfigurationInterface
                 ->enumNode(self::EXCLUDE)
                     ->values(['artwork', 'folder'])
                     ->defaultValue('')
+                    ->info('can exclude this strategy from running for either artwork or folder types')
                 ->end()
+                ->booleanNode(self::SUPPRESS_MISSING)
+                    ->defaultFalse()
+                    ->info('if set to true will allow missing images without throwing an error')
+                    ->end()
             ->end();
 
         return $treeBuilder;
