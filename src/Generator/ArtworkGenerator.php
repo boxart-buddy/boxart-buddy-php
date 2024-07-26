@@ -45,6 +45,7 @@ readonly class ArtworkGenerator
             $artwork,
             $platform,
             $romAbsolutePath,
+            $this->pathProvider->removeRomFolderBase(dirname($romAbsolutePath)),
             CommandNamespace::ARTWORK
         );
 
@@ -108,6 +109,7 @@ readonly class ArtworkGenerator
             $artwork,
             $platform,
             $romAbsolutePath,
+            $folderName,
             CommandNamespace::FOLDER
         );
 
@@ -168,16 +170,16 @@ readonly class ArtworkGenerator
         Artwork $artwork,
         string $platform,
         string $romAbsolutePath,
+        string $folderName,
         CommandNamespace $namespace
     ): string {
         $filesystem = new Filesystem();
         $romName = Path::removeExtension(basename($romAbsolutePath));
 
-        // if $romName is provided then the artwork needs retranslated every time
         $tempArtworkPath = $this->path->joinWithBase(
             FolderNames::TEMP->value,
             'artwork_tmp',
-            sprintf('%s-%s-%s.xml', $platform, $romName, $namespace->value)
+            sprintf('%s-%s-%s-%s.xml', $platform, $romName, Path::pathToDash($folderName), $namespace->value)
         );
 
         if ($filesystem->exists($tempArtworkPath)) {
@@ -188,6 +190,7 @@ readonly class ArtworkGenerator
             $artwork,
             $platform,
             $romAbsolutePath,
+            $folderName,
             $namespace
         );
 

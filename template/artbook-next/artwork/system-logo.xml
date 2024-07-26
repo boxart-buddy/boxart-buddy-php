@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <artwork>
 
-    {% set platformLogoPath = "system-logos/dark-white/" ~ ('logo'|trans({}, 'logo', locale)) %}
+    {% set folderIsValidLocale = validLocale(folder) %}
+    {% set logoFile = folder %}
+
+    {% if folderIsValidLocale %}
+    {% set logoFile = ('logo'|trans({}, 'logo', folder)) %}
+    {% endif %}
+
+    {% set mydebug = doDebug(logoFile) %}
+
+    {% if logoFile == 'missing.png' or logoFile == folder%}
+
+    {# if logoFile is returned from translation without being matched then assume it missed, so use platform instead #}
+    {% set logoFile = ('logo'|trans({}, 'logo', platform)) %}
+
+    {% endif %}
+
+    {% set platformLogoPath = "system-logos/dark-white/" ~ logoFile %}
     {% set fit = resourcehelper.fit(platformLogoPath, 320, 170) %}
 
     <output type="cover" width="640" height="480">

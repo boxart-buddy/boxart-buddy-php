@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <artwork>
+
+    {% set resourceFolder = 'folders-pop' %}
+    {% set lookup1 = resourceFolder ~ '/' ~ folder ~ '-pop.png' %}
+    {% set lookup2 = resourceFolder ~ '/' ~ platform ~ '-pop.png' %}
+
+    {% set resourceFilename = firstExisting(lookup1, lookup2) %}
+
     <output type="cover" width="640" height="480">
         <layer width="640" height="480" align="center" valign="middle"
-               resource="folders-pop/{{ platform }}-pop.png">
+               resource="{{ resourceFilename }}">
         </layer>
     </output>
 </artwork>

@@ -78,6 +78,23 @@ readonly class CopyResourcesHandler implements CommandHandlerInterface
                 $skyscraperResourcesDirectory
             );
         }
+
+        // COPY FROM user_config/resources if it exists
+        $userConfigResourcePath = $this->path->joinWithBase(FolderNames::USER_CONFIG->value, 'resources');
+        if (!$filesystem->exists($userConfigResourcePath)) {
+            return;
+        }
+
+        $finder = new Finder();
+
+        $finder->in($userConfigResourcePath)->files();
+        foreach ($finder as $file) {
+            $filesystem->copy(
+                $file->getRealPath(),
+                Path::join($skyscraperResourcesDirectory, $file->getFilename()),
+                true
+            );
+        }
     }
 
     private function copyPostProcessResourcesToTemp(CopyResourcesCommand $command): void

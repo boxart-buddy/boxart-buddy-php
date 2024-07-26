@@ -85,6 +85,11 @@ readonly class Path
         return preg_replace('/[^a-z0-9]+/', '-', strtolower($filename)) ?? $filename;
     }
 
+    public static function pathToDash(string $path): string
+    {
+        return preg_replace('#/#', '-', $path) ?? $path;
+    }
+
     public static function hashForDirectoryContents(string $path, bool $directoriesOnly = false): string
     {
         $filesystem = new Filesystem();

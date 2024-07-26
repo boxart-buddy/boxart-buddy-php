@@ -7,6 +7,7 @@ use App\Command\CommandNamespace;
 use App\Model\Artwork;
 use App\Skyscraper\CacheReader;
 use App\Translator\Fuzzy\FuzzyMatchingTranslator;
+use App\Util\FirstExistingResourceHelper;
 use App\Util\Path;
 use App\Util\SkyscraperResourceImageSizingHelper;
 use Symfony\Component\Filesystem\Filesystem;
@@ -27,6 +28,7 @@ class ArtworkTranslator
         readonly private Path $path,
         readonly private CacheReader $cacheReader,
         readonly private SkyscraperResourceImageSizingHelper $skyscraperResourceImageSizingHelper,
+        readonly private FirstExistingResourceHelper $firstExistingResourceHelper
     ) {
         $this->translator = new FuzzyMatchingTranslator('default');
         $this->translator->setFallbackLocales(['default']);
@@ -98,7 +100,7 @@ class ArtworkTranslator
         $this->runtimeTokenMemoization[$hash] = true;
     }
 
-    public function translateArtwork(Artwork $artwork, string $locale, string $romAbsolutePath, CommandNamespace $namespace): string
+    public function translateArtwork(Artwork $artwork, string $locale, string $romAbsolutePath, string $folderName, CommandNamespace $namespace): string
     {
         $romName = Path::removeExtension(basename($romAbsolutePath));
 
@@ -115,6 +117,22 @@ class ArtworkTranslator
             return $this->cacheReader->getImageSizingHelperForRom($romAbsolutePath, $locale, $resource);
         }));
 
+        $twig->addFunction(new TwigFunction('firstExisting', function (string ...$filenames) {
+            return $this->firstExistingResourceHelper->path(...$filenames);
+        }));
+
+        $twig->addFunction(new TwigFunction('validLocale', function (string $test) {
+            if (!preg_match('/^[a-z0-9@_\\.\\-]*$/i', $test)) {
+                return false;
+            }
+
+            return true;
+        }));
+
+        $twig->addFunction(new TwigFunction('doDebug', function (mixed $var) {
+            return $var;
+        }));
+
         // hack needed in case generating a portmaster alternative
         if ('sh' === pathinfo($romAbsolutePath, PATHINFO_EXTENSION)) {
             $locale = ApplicationConstant::FAKE_PORTMASTER_PLATFORM;
@@ -123,6 +141,9 @@ class ArtworkTranslator
         $vars = ['locale' => $locale, 'platform' => $locale];
         if ($romName) {
             $vars['rom'] = $romName;
+        }
+        if ($folderName) {
+            $vars['folder'] = $folderName;
         }
 
         $vars['resourcehelper'] = $this->skyscraperResourceImageSizingHelper;
