@@ -70,6 +70,7 @@ class RomExtensionProvider
         return [
             '_hidden',
             '.hidden',
+            '.multidisc',
         ];
     }
 }

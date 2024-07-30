@@ -103,8 +103,8 @@ artbook-next-game-list:
     package: 'common'
   post_process:
     - strategy: text
-      font_family: roboto
-      font_variant: medium
+      font_family: visb-rnd
+      font_variant: extra-bold
       color: '7d7f7c'
       text_bg_opacity: 0
       size: xxs
@@ -119,8 +119,8 @@ artbook-next-game-list:
       sibling-count: 8
       loop: true
     - strategy: text
-      font_family: roboto
-      font_variant: medium
+      font_family: visb-rnd
+      font_variant: extra-bold
       color: 'FFFFFF'
       text_bg_opacity: 100
       background_color: 000000

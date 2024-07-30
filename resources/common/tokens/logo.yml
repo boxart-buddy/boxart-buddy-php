@@ -38,6 +38,8 @@
   logo: 'Handhelds/Atari Lynx.png'
 'atarist':
   logo: 'Computers/Atari ST.png'
+'cps3':
+  logo: 'Arcade/Capcom Play System 3.png'
 'atomiswave':
   logo: 'Arcade/Sammy Atomiswave.png'
 'c128':

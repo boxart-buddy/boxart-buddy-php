@@ -105,6 +105,17 @@ readonly class PathProvider
             };
         }
 
+        if ('visb-rnd' === $family) {
+            return match ($variant) {
+                'bold' => $this->path->joinWithBase('resources', 'font', 'visb-rnd', 'bold.ttf'),
+                'extra-bold' => $this->path->joinWithBase('resources', 'font', 'visb-rnd', 'extra-bold.ttf'),
+                'heavy' => $this->path->joinWithBase('resources', 'font', 'visb-rnd', 'heavy.ttf'),
+                'medium' => $this->path->joinWithBase('resources', 'font', 'visb-rnd', 'medium.ttf'),
+                'regular' => $this->path->joinWithBase('resources', 'font', 'visb-rnd', 'regular.ttf'),
+                default => $this->path->joinWithBase('resources', 'font', 'visb-rnd', 'bold.ttf')
+            };
+        }
+
         if ('roboto' === $family) {
             return match ($variant) {
                 'black' => $this->path->joinWithBase('resources', 'font', 'roboto', 'Roboto-Black.ttf'),
