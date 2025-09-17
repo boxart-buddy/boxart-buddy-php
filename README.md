@@ -1,9 +1,1 @@
-<img src="logo.png" alt="Logo" width="100%">
-
-<div align="center">
-
-[![view - Documentation](https://img.shields.io/badge/view-Documentation-blue?style=for-the-badge)](https://boxart-buddy.github.io/docs "Go to project documentation")
-<p align="centre">
-</p>
-
-</div>
+This project is abandoned. See '[boxart-buddy/bb](https://github.com/boxart-buddy/bb)' for the new version of this application.
