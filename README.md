@@ -1,1 +1,1 @@
-This project is abandoned. See '[boxart-buddy/bb](https://github.com/boxart-buddy/bb)' for the new version of this application.
+This project is abandoned. See '[boxart-buddy/boxart-buddy](https://github.com/boxart-buddy/boxart-buddy)' for the new version of this application.
